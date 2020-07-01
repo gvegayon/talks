@@ -1,0 +1,11 @@
+library(netplot)
+library(magrittr)
+data(UKfaculty, package="igraphdata")
+
+set.seed(1231)
+graphics.off()
+oldpar <- par(lwd=10)
+png(file = "talk/fig/ukfaculty-igraph.png", width = 1300, height=900)
+nplot(UKfaculty, vertex.color = "gray40", edge.width = 2)
+dev.off()
+par(oldpar)

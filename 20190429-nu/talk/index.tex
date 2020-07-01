@@ -1,0 +1,1308 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[10pt,ignorenonframetext,aspectratio=169,]{beamer}
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+% Prevent slide breaks in the middle of a paragraph:
+\widowpenalties 1 10000
+\raggedbottom
+\setbeamertemplate{part page}{
+\centering
+\begin{beamercolorbox}[sep=16pt,center]{part title}
+  \usebeamerfont{part title}\insertpart\par
+\end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+\centering
+\begin{beamercolorbox}[sep=12pt,center]{part title}
+  \usebeamerfont{section title}\insertsection\par
+\end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+\centering
+\begin{beamercolorbox}[sep=8pt,center]{part title}
+  \usebeamerfont{subsection title}\insertsubsection\par
+\end{beamercolorbox}
+}
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={Big Problems for  Small Networks: Statistical Analysis of Small Networks and Team Performance},
+            pdfauthor={; Kayla de la Haye},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\newif\ifbibliography
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+\usepackage{caption}
+% These lines are needed to make table captions work with longtable:
+\makeatletter
+\def\fnum@table{\tablename~\thetable}
+\makeatother
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+% Mathematical functions
+\newcommand{\isone}[1]{{\boldsymbol{1}\left( #1 \right)}}
+\renewcommand{\Pr}[1]{{\mathbb{P}\left(#1\right) }}
+\newcommand{\f}[1]{{f\left(#1\right) }}
+\newcommand{\Prcond}[2]{{\mbox{Pr}\left(#1\vphantom{#2}\;\right|\left.\vphantom{#1}#2\right)}}
+\newcommand{\fcond}[2]{{f\left(#1|#2\right) }}
+\newcommand{\Expected}[1]{{\mathbb{E}\left\{#1\right\}}}
+\newcommand{\ExpectedCond}[2]{{\mathbb{E}\left\{#1\vphantom{#2}\;\right|\left.\vphantom{#1}#2\right\}}}
+
+\newcommand{\Likelihood}[2]{\text{L}\left(#1 \left|\vphantom{#1}#2\right.\right)}
+\newcommand{\sufstats}[1]{s\left(#1\right)}
+\renewcommand{\exp}[1]{\mbox{exp}\left\{#1\right\}}
+\newcommand{\transpose}[1]{{#1}^\mathbf{t}}
+
+% Objects
+\newcommand{\params}{\theta}
+\newcommand{\Params}{\Theta}
+\newcommand{\Graph}{\mathbf{G}}
+\newcommand{\graph}{\mathbf{g}}
+\newcommand{\GRAPH}{\mathcal{G}}
+\newcommand{\Adjmat}{\mathbf{A}}
+\newcommand{\adjmat}{\mathbf{a}}
+\newcommand{\DEPVAR}{\mathcal{Y}}
+\newcommand{\Depvar}{Y}
+\newcommand{\depvar}{y}
+
+\newcommand{\INDEPVAR}{\mathcal{X}}
+\newcommand{\Indepvar}{\mathbf{X}}
+\newcommand{\indepvar}{\mathbf{x}}
+
+
+% tricks for two column in Rmarkdown
+\def\begincols{\begin{columns}[c]}
+\def\begincol{\begin{column}[c]}
+\def\endcol{\end{column}}
+\def\endcols{\end{columns}}
+
+\graphicspath{{./fig/}}
+
+% Theme 
+\usecolortheme{seagull}
+\usefonttheme{structurebold}
+
+\setbeamertemplate{footline}[frame number]
+
+\addtobeamertemplate{background canvas}{\transfade[duration=.5]}{}
+
+%% NEED THIS FOR CANCY TEX
+\usepackage{pstricks}
+
+% Colors
+\definecolor{USCCardinal}{HTML}{990000} % 153 0 0 in RGB
+\definecolor{USCGold}{HTML}{FFCC00}
+\definecolor{USCGray}{HTML}{CCCCCC}
+
+% To use the function \sout
+\usepackage{ulem}
+\usepackage{tabularx, booktabs}
+
+% \bibliography{bibliography.bib}
+
+\title{Big Problems for \color{USCCardinal} Small Networks\color{black}:
+Statistical Analysis of Small Networks and Team Performance}
+\author{\textbf{George G Vega Yon} \and Kayla de la Haye \vspace{-.5cm}}
+\providecommand{\institute}[1]{}
+\institute{\includegraphics[width=.15\linewidth]{usc.pdf}\linebreak[4]Department of
+Preventive Medicine}
+\date{Social Network Research Group\linebreak[4]UCI\linebreak[4]April 29, 2019}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}{Acknowledgements}
+\protect\hypertarget{acknowledgements}{}
+
+\begincols
+\begincol{.15\linewidth}
+
+\includegraphics[width=.8\linewidth]{ARO_logo.png}
+
+\endcol
+
+\begincol{.84\linewidth}
+
+This material is based upon work support by, or in part by, the U.S.
+Army Research Laboratory and the U.S. Army Research Office under grant
+number W911NF-15-1-0577 \endcol
+
+\endcols
+
+\begincols
+\begincol{.84\linewidth}
+
+Computation for the work described in this paper was supported by the
+University of Southern California's Center for High-Performance
+Computing (\url{https://hpcc.usc.edu}). \endcol
+
+\begincol{.15\linewidth}
+
+\includegraphics[width = 1\linewidth]{usc.pdf} \endcol \endcols
+
+We thank members of our MURI research team, USC's Center for Applied
+Network Analysis, NU's SONIC lab, Garry Robins, Andrew Slaughter, Carter
+Butts, and attendees of the NASN 2018 conference for their comments.
+
+\begin{figure}
+\centering
+\includegraphics[width=1\linewidth]{muriteams.png}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Research Problem}
+\protect\hypertarget{research-problem}{}
+
+In the context of network science of small teams:
+
+\pause
+
+\large
+\centering
+
+What characterizes the social networks that emerge from small
+teams?\pause
+
+Is there any association between how team networks are structured and
+their performance?\normalsize
+
+\end{frame}
+
+\begin{frame}{Research Problem (cont'd)}
+\protect\hypertarget{research-problem-contd}{}
+
+We are trying to answer these two questions with the following
+experimental data: \pause
+
+\begin{itemize}
+\item
+  42 teams typically made of 4 to 5 mixed-gender teammates.\pause
+\item
+  Each team completed 1 hour of group tasks, in particular, a set of
+  tasks to measure collective intelligence developed by MIT (Kim et al.
+  2017).\pause
+\item
+  We surveyed team members to capture information regarding
+  socio-demographics \textbf{and}:\pause
+
+  \begin{itemize}
+  \item
+    Social Intelligence (SI domains): Social Perception (measured by
+    RME), Social Accomodation, Social Gregariousness, and Social
+    Awareness\pause 
+  \item
+    Social Networks: Advice Seeking, Leadership, Influence (among
+    others).
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Contents}
+\protect\hypertarget{contents}{}
+
+\tableofcontents
+
+\end{frame}
+
+\hypertarget{part-i-network-structure}{%
+\section{Part I: Network Structure}\label{part-i-network-structure}}
+
+\begin{frame}{Exponential Random Graph Models (ERGMs)}
+\protect\hypertarget{exponential-random-graph-models-ergms}{}
+
+\begin{figure}
+\centering
+\includegraphics[height=.7\textheight]{ukfaculty-igraph.png}
+\caption{Friendship network of a UK university faculty. Source: \textbf{igraphdata} R package (Csardi, 2015). Figure drawn using the R package \textbf{netplot} (yours truly, https://github.com/usccana/netplot)}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{ERGMs\ldots{} the \textit{lingua franca} of SNA}
+\protect\hypertarget{ergms-the-of-sna}{}
+
+\begin{itemize}
+\item
+  Seeks to answer the question:
+  \emph{What local social structures gave origin to a given observed graph?}\pause
+\item
+  The model is centered around a vector of
+  \textbf{sufficient statistics} \(\sufstats{}\), and is operationalized
+  as:
+
+  \begin{equation}
+    \Prcond{\Graph = \graph}{\params, \Indepvar} = \frac{%
+        \exp{\transpose{\params}\sufstats{\graph, \Indepvar}}%  
+    }{
+        \kappa\left(\params, \Indepvar\right)
+    },\quad\forall \graph\in\GRAPH\label{eq:ergm}
+  \end{equation}
+
+  Where \(\kappa\left(\params, \Indepvar\right)\) is the normalizing
+  constant and equals
+  \(\sum_{\graph'\in\GRAPH}\exp{\transpose{\params}\sufstats{\graph', \Indepvar}}\).
+  \pause
+\item
+  The set of sufficient statistics reflects social and psychological
+  mechanisms that are hypothesized to drive the network structure.
+  Figure \autoref{fig:ergm-structs} shows some examples of values in
+  \(\sufstats{}\).\pause
+\item
+  In the case of directed networks, \(\GRAPH\) has \(2^{n(n-1)}\)
+  terms.\pause
+\item
+  See Wasserman, Pattison, Robins, Snijders, Handcock, Butts, and
+  others.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Structures}
+\protect\hypertarget{structures}{}
+
+\def\fig1width{.45\linewidth}
+\begin{figure}
+\centering
+\begin{tabular}{m{.2\linewidth}<\centering m{.4\linewidth}<\raggedright}
+\toprule Representation & Description  \\ \midrule
+\includegraphics[width=.45\linewidth]{terms/mutual.pdf} & Mutual Ties (Reciprocity)\linebreak[4]$\sum_{i\neq j}y_{ij}y_{ji}$  \\
+\includegraphics[width=.45\linewidth]{terms/ttriad.pdf} & Transitive Triad (Balance)\linebreak[4]$\sum_{i\neq j\neq k}y_{ij}y_{jk}y_{ik}$  \\
+\includegraphics[width=.45\linewidth]{terms/homophily.pdf} & Homophily\linebreak[4]$\sum_{i\neq j}y_{ij}\mathbf{1}\left(x_i=x_j\right)$ \\
+\includegraphics[width=.45\linewidth]{terms/nodeicov.pdf} & Covariate Effect for Incoming Ties\linebreak[4]$\sum_{i\neq j}y_{ij}x_j$ \\
+\includegraphics[width=.45\linewidth]{terms/fourcycle.pdf} & Four Cycle\linebreak[4]$\sum_{i\neq j \neq k \neq l}y_{ij}y_{jk}y_{kl}y_{li}$  \\
+\bottomrule
+\end{tabular}
+\caption{\label{fig:ergm-structs}Besides of the common edge count statistic (number of ties in a graph), ERGMs allow measuring other more complex structures that can be captured as sufficient statistics. }
+\end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\large \textbf{Example of model} \normalsize
+
+\begincols
+
+\begincol{.4\linewidth}
+
+In this network\linebreak
+
+\scriptsize
+
+\begin{center}\includegraphics[width=.9\linewidth]{index_files/figure-beamer/simple-model-1} \end{center}
+
+\normalsize
+
+\pause
+
+We see 4 \textbf{edges}, 1 \textbf{transitive triad} and \textbf{no
+mutual ties}.
+
+\endcol
+
+\pause
+
+\begincol{.4\linewidth}
+
+The probability function of this model would be
+
+\footnotesize
+
+\begin{equation*}
+\Prcond{\Graph = \graph}{\theta} = \frac{\exp{4\theta_{edges} + \theta_{ttriads} \textcolor{lightgray}{+ 0\theta_{mutual}}}}{%
+\sum_{\graph'\in\GRAPH} \exp{\transpose{\theta} \sufstats{\graph'}}}
+\end{equation*}
+
+\normalsize
+
+\noindent with
+\(\theta = \transpose{[\theta_{edges}\quad \theta_{ttriads} \quad \theta_{mutual}]}\)
+
+\endcol
+
+\endcols
+
+\scriptsize
+
+\normalsize
+
+\pause
+
+\vspace{1cm}
+
+This model has \textbf{MLE parameter estimates} of -0.19 (low density),
+0.28 (high chance of ttriads), and -8.48 (low chance of mutuality) for
+the parameters \texttt{edges}, \texttt{ttriads}, and \texttt{mutual}
+respectively.
+
+\end{frame}
+
+\begin{frame}{Estimation of ERGMs}
+\protect\hypertarget{estimation-of-ergms}{}
+
+\begin{itemize}
+\item
+  Calculating of the normalizing constant in \eqref{eq:ergm},
+  \(\kappa = \sum_{\graph'\in\GRAPH}\exp{\transpose{\params}\sufstats{\graph', \Indepvar}}\),
+  makes ERGMs difficult to estimate.\pause
+\item
+  For this reason, statistical methods have focused on avoiding the
+  direct calculation of \(\kappa\); most modern methods for estimating
+  ERGMs rely on MCMC.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[t]{Estimation of ERGMs (cont'd)}
+\protect\hypertarget{estimation-of-ergms-contd}{}
+
+Description of the MCMC-MLE algorithm (Geyer and Thompson 1992) \pause
+
+\begin{enumerate}
+\item
+  Make an initial guess of the model parameters \(\hat\theta_0\) \pause
+\item
+  While the algorithm doesn't converge, do: \pause
+
+  \begin{enumerate}
+  [a.]
+  \item
+    Generate a large sample of graphs from
+    \(\Prcond{\Graph = \graph}{\hat\theta_0, \Indepvar}\) using MCMC
+    \pause
+  \item
+    Use the simulated sample of graphs \textbf{to approximate the
+    normalizing constant}, and so, the likelihood function. And with
+    this approximation update the parameter \(\theta_0\) using a
+    Newton-Raphson step. \pause
+  \item
+    next iteration\pause 
+  \end{enumerate}
+\end{enumerate}
+
+Once it converges, the last value of \(\hat\theta_0\) is the MCMC-MLE
+estimates.\pause The variance approximation is another story.
+
+\end{frame}
+
+\begin{frame}
+
+\footnotesize
+
+\begin{itemize}
+\item
+  While significant advances have been made in the area, MC(approximate)
+  based estimation algorithms can suffer from
+  \textbf{inference degeneracy} (Handcock 2003).\pause
+\item
+  This occurs when the model \textit{lives in a degenerate region} (data
+  near the boundary of the interior of the sample space). This impacts
+  directly the MCMC process yielding poor mixing\pause
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[height=.6\textheight]{handcock2003-figure5.pdf}
+\caption{Model degeneracy. Figure 5 in Handcock (2003)}
+\end{figure}\pause
+
+\begin{itemize}
+\tightlist
+\item
+  Inference degeneracy is particularly problematic with small
+  networks\ldots{} (says anyone who has tried to fit one).
+\end{itemize}
+
+\normalsize
+
+\end{frame}
+
+\begin{frame}{ERGMs for Small Networks}
+\protect\hypertarget{ergms-for-small-networks}{}
+
+\begin{figure}
+\centering
+\includegraphics[height=.9\textheight]{plot-graph-4-1.pdf}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{ERGMs for Small Networks (cont'd)}
+\protect\hypertarget{ergms-for-small-networks-contd}{}
+
+\begin{itemize}
+\item
+  In the case of small networks (e.g.~at most 6 nodes), the calculation
+  of \(\kappa\) becomes computationally feasible.\pause
+\item
+  This allows direct calculation of \eqref{eq:ergm},
+  \textbf{avoiding the need for simulations} and allowing us to obtain
+  Maximum Likelihood Estimates using \textit{standard} optimization
+  techniques.\pause
+\item
+  In addition, most of the time samples of small networks include
+  multiple of them, e.g.: Families, Small teams (like our data),
+  Ego-nets, etc.\pause
+\item
+  This makes pooled ERGM estimates a natural way of modeling the data:
+  \pause{}
+
+  \[
+  \Prcond{\Graph_1 = \graph_1, \dots, \Graph_p = \graph_p}{\params, \Indepvar_1, \dots, \Indepvar_p} = \prod_p\frac{%
+          \exp{\transpose{\params}\sufstats{\graph_p, \Indepvar_p}}%  
+      }{
+          \kappa_p\left(\params, \Indepvar_p\right)
+      }
+  \]
+\end{itemize}
+
+\pause
+
+How different is this from the ``normal'' way to fit ERGMs?
+
+\end{frame}
+
+\begin{frame}[fragile,t]{Estimation of
+ERGM\only<2->{\textcolor{USCCardinal}{ito}}s (cont'd)}
+\protect\hypertarget{estimation-of-ergms-contd-1}{}
+
+Description of the
+\textcolor<2->{lightgray}{MCMC-}\textcolor<2->{USCCardinal}{MLE}
+algorithm \textcolor<2->{lightgray}{(Geyer and Thompson, 1992)}
+
+\begin{enumerate}
+\item
+  Make an initial guess of the model parameters \(\hat\theta_0\)
+\item
+  While the algorithm doesn't converge, do:
+
+  \begin{enumerate}
+  [a.]
+  \item
+    \textcolor<2->{lightgray}{Simulate $B$ graphs from $\Prcond{\Graph = \graph}{\hat\theta_0, \Indepvar}$ using MCMC}
+  \item
+    \textcolor<2->{lightgray}{Use the simulated sequence of graphs to approximate the likelihood function. And with this approximation}
+    \textcolor<2->{USCCardinal}{update the parameter $\theta_0$ using a Newton-Raphson step}.
+  \item
+    next iteration\pause\pause
+  \end{enumerate}
+\end{enumerate}
+
+By skipping the MCMC part we:\pause
+
+\begin{enumerate}
+\item
+  are able to get MLE estimates directly,\pause
+\item
+  \emph{avoid the degeneracy problem} latent in MCMC, and\pause
+\item
+  obtain \emph{more accurate} estimates \emph{faster}. \pause
+\end{enumerate}
+
+We have implemented this and more in the \texttt{ergmito} R package
+
+\end{frame}
+
+\begin{frame}
+
+Sidetrack\ldots{}
+
+\begin{minipage}[c]{1\linewidth}
+\large \textbf{ito, ita}: From the latin -\textit{\=ittus}. suffix in Spanish used to denote small or affection. e.g.:
+
+\hspace{.5cm} \textit{¡Qué lindo ese perr\textcolor{USCCardinal}{\textbf{ito}}!} / \textit{What a beautiful little dog!}
+
+\hspace{.5cm} \textit{¿Me darías una tac\textcolor{USCCardinal}{\textbf{ita}} de azúcar?} / \textit{Would you give me a small cup of sugar?}
+\normalsize
+\end{minipage}\pause
+
+\% Screen shot of ERGMito tweet.
+
+\alert{Special thanks to George Barnett who proposed the name during the 2018 NASN!}
+
+\end{frame}
+
+\begin{frame}[fragile]{Features of \texttt{ergmito}}
+\protect\hypertarget{features-of-ergmito}{}
+
+This
+(\includegraphics[width=.1\linewidth]{lifecycle-experimental-orange.pdf})
+R package has the following features\pause
+
+\begin{itemize}
+\item
+  Built on top of \href{https://statnet.org}{\textbf{statnet}}'s
+  \href{https://github.com/statnet/ergm}{\texttt{ergm}} R package
+  (Hunter et al. 2008; Handcock et al. 2018).\pause
+\item
+  Allows estimating ERGMs for small networks (less than 7 and perhaps
+  6)\footnote<.->{A directed graph of size 6 has a support set with
+    \(2^{6\times(6 - 1)} = 1,073,741,824\) elements.} via MLE.\pause
+\item
+  Implements pooled ERGM models.\pause
+\item
+  Includes a simulation function for efficiently drawing samples of
+  small networks, and by \textbf{efficiently} we mean \textbf{fast}.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{ergmito} example}
+\protect\hypertarget{ergmito-example}{}
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ergmito)}
+\KeywordTok{data}\NormalTok{(fivenets, }\DataTypeTok{package =} \StringTok{"ergmito"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\normalsize
+
+\scriptsize
+
+\begin{center}\includegraphics[width=.5\linewidth]{index_files/figure-beamer/plotfivenets-1} \end{center}
+
+\normalsize
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Looking at one of the five networks}
+\NormalTok{fivenets[[}\DecValTok{1}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  Network attributes:
+##   vertices = 4 
+##   directed = TRUE 
+##   hyper = FALSE 
+##   loops = FALSE 
+##   multiple = FALSE 
+##   bipartite = FALSE 
+##   total edges= 2 
+##     missing edges= 0 
+##     non-missing edges= 2 
+## 
+##  Vertex attribute names: 
+##     female name 
+## 
+## No edge attributes
+\end{verbatim}
+
+\normalsize
+
+\pause How can we fit an ERGMito to this 5 networks?
+
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{ergmito} example (cont'd)}
+\protect\hypertarget{ergmito-example-contd}{}
+
+The same as you would do with the \texttt{ergm} package:
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(model1 <-}\StringTok{ }\KeywordTok{ergmito}\NormalTok{(fivenets }\OperatorTok{~}\StringTok{ }\NormalTok{edges }\OperatorTok{+}\StringTok{ }\KeywordTok{nodematch}\NormalTok{(}\StringTok{"female"}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## ERGMito estimates
+## 
+##  Coefficients:
+##            edges  nodematch.female  
+##           -1.705             1.587
+\end{verbatim}
+
+\normalsize
+
+\scriptsize
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l c }
+\hline
+ & Model 1 \\
+\hline
+edges            & $-1.70^{**}$ \\
+                 & $(0.54)$     \\
+nodematch.female & $1.59^{*}$   \\
+                 & $(0.64)$     \\
+\hline
+AIC              & 73.34        \\
+BIC              & 77.53        \\
+Log Likelihood   & -34.67       \\
+Num. networks    & 5            \\
+\hline
+\multicolumn{2}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+\caption{Statistical models}
+\label{table:coefficients}
+\end{center}
+\end{table}
+
+\normalsize
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(gof1 <-}\StringTok{ }\KeywordTok{gof_ergmito}\NormalTok{(model1))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Goodness-of-fit for edges 
+## 
+##       obs min mean max lower upper lower prob. upper prob.
+## net 1   2   0  3.7  12     0     6      0.0081        0.96
+## net 2   7   0  3.7  12     0     6      0.0081        0.96
+## net 3   4   0  3.1  12     0     6      0.0206        0.99
+## net 4   5   0  5.6  12     2     8      0.0309        0.95
+## net 5   2   0  3.7  12     0     6      0.0081        0.96
+## 
+## 
+## Goodness-of-fit for nodematch.female 
+## 
+##       obs min mean max lower upper lower prob. upper prob.
+## net 1   2   0  2.8   6     0     5       0.022        0.99
+## net 2   5   0  2.8   6     0     5       0.022        0.99
+## net 3   3   0  1.9   4     0     3       0.079        0.95
+## net 4   5   0  5.6  12     2     8       0.031        0.95
+## net 5   1   0  2.8   6     0     5       0.022        0.99
+## 
+## Note: Exact confidence intervals where used. This implies that the requestes CI may differ from the one used (see ?gof_ergmito).
+\end{verbatim}
+
+\normalsize
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(gof1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=.7\linewidth]{index_files/figure-beamer/gof-fivenets-print-1} \end{center}
+
+\normalsize
+
+\end{frame}
+
+\begin{frame}{Simulation Study}
+\protect\hypertarget{simulation-study}{}
+
+We conducted a simulation study to explore the properties of MLE for
+small networks (a.k.a. ERGMito). To generate each sample of teams:\pause
+
+\begin{enumerate}
+\item
+  Draw the \textbf{population parameters} from a piecewise Uniform with
+  values in \([-2.5, -.1]\cup[.1, 2.5]\)\pause
+\item
+  We will draw \textbf{groups of sizes 3 to 5}. The number of networks
+  per group size are drawn from a Poisson distribution with parameter 10
+  (hence, an expected size of 30 networks per sample).\pause
+\item
+  Use the \textbf{drawn parameters} and \textbf{group sizes} to
+  \textbf{generate random graphs} using an ERGM data generating
+  process.\pause
+\end{enumerate}
+
+We simulated 100,000 samples, each one composed of an average of 30
+networks.
+
+\end{frame}
+
+\begin{frame}{Simulation Study (cont'd)}
+\protect\hypertarget{simulation-study-contd}{}
+
+\begin{figure}
+\centering
+\includegraphics[width=.55\linewidth]{fig/power-02-various-sizes-3-5.pdf}
+\caption{Empirical power of Pooled-ERGM estimates at various levels of effect size. As expected, power increases significantly with sample size (\# of networks per sample). Interestingly, the discovery rate of an effect size within $[1, 2)$ is very high even with a sample size of 20-30 networks. More extreme points have higher volatility due to small number of samples included.}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+
+\large So now that we can estimate ERGMs for small networks
+(cool!)\ldots{}\pause{}
+
+\hspace{2cm}
+
+\ldots{} what can this tell us about our 42 teams?
+
+\end{frame}
+
+\begin{frame}{Preliminary results}
+\protect\hypertarget{preliminary-results}{}
+
+\scriptsize
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c c }
+\hline
+ & Advice & Influence & Leadership \\
+\hline
+Edges                       & $-1.87^{***}$ & $-0.78^{***}$ & $-0.57^{***}$ \\
+                            & $(0.30)$      & $(0.13)$      & $(0.14)$      \\
+Transitive Triads           & $0.24^{***}$  & $0.21^{**}$   &               \\
+                            & $(0.06)$      & $(0.08)$      &               \\
+Indeg. RME                  & $0.35^{***}$  &               &               \\
+                            & $(0.08)$      &               &               \\
+Outdeg. Female              & $0.43^{*}$    &               &               \\
+                            & $(0.19)$      &               &               \\
+Outdeg. Social Accomodation & $0.11$        &               &               \\
+                            & $(0.08)$      &               &               \\
+Indeg. Female               &               &               & $-0.38^{*}$   \\
+                            &               &               & $(0.19)$      \\
+\hline
+AIC                         & 693.18        & 760.40        & 655.78        \\
+BIC                         & 714.50        & 769.12        & 664.32        \\
+Log Likelihood              & -341.59       & -378.20       & -325.89       \\
+Num. networks               & 38            & 41            & 38            \\
+\hline
+\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+\caption{The two statistics that showed to be the most robust were \textbf{Indeg. RME} and \textbf{Outdeg. Female}. These two effects can be described as (1) individuals with high levels of RME receive more ties, and (2) female subjects were more likely of seeking advice than male. Other statistics such as GPA, religiousness, age, and ethnicity were not significant.}
+\label{table:coefficients}
+\end{center}
+\end{table}
+
+\normalsize
+
+\end{frame}
+
+\begin{frame}
+
+\scriptsize
+
+\begin{center}\includegraphics[width=.75\linewidth]{index_files/figure-beamer/preliminary-results-gof-advice-1} \end{center}
+
+\normalsize
+
+\end{frame}
+
+\begin{frame}
+
+\scriptsize
+
+\begin{center}\includegraphics[width=.75\linewidth]{index_files/figure-beamer/preliminary-results-gof-influence-1} \end{center}
+
+\normalsize
+
+\end{frame}
+
+\begin{frame}
+
+\scriptsize
+
+\begin{center}\includegraphics[width=.75\linewidth]{index_files/figure-beamer/preliminary-results-gof-ledership-1} \end{center}
+
+\normalsize
+
+\end{frame}
+
+\hypertarget{part-ii-association-between-network-structure-and-team-performance}{%
+\section{Part II: Association between network structure and team
+performance}\label{part-ii-association-between-network-structure-and-team-performance}}
+
+\begin{frame}{Testing effects of social network structure on group
+performance}
+\protect\hypertarget{testing-effects-of-social-network-structure-on-group-performance}{}
+
+Two common approaches: Generalized Linear Models (GLMs), or
+permutation-like tests. Both have limitations:\pause
+
+\begin{itemize}
+\item
+  GLMs:\pause
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Sample size is problematic: How costly is getting enough teams to
+    run get a desired level of power?\pause
+  \end{itemize}
+\item
+  Permutation-like tests:\pause
+
+  \begin{itemize}
+  \item
+    Permutation: shuffle the dependent variable and compute, for
+    example, correlations.\pause{}
+    \textcolor{USCCardinal}{\textbf{Which does not control for other factors in the system.}}\pause
+  \item
+    Rewiring (see Milo et al. 2004): Sample networks by generating new
+    graphs using a rewiring algorithm, usually preserving some property
+    such as degree sequence--the observed sequence of in/out
+    degree.\pause \textcolor{USCCardinal}{\textbf{This assumes an oversimplifying data generating process.}}\pause{}
+    And worse, in a network of size 4, how many different networks can
+    be observed \textbf{holding the degree sequence fixed}?
+  \end{itemize}
+\end{itemize}
+
+\pause BTW: Talking about Degree sequence leads directly to the now
+controvelsial Scale-free networks.
+
+\end{frame}
+
+\begin{frame}
+
+\textbf{``Scale-free networks are rare''}
+
+\begin{quote}
+\Huge``\normalsize The \textbf{structural diversity of real-world
+networks} uncovered here presents both a puzzle and an opportunity. The
+strong focus in the scientific literature on \textbf{explaining and
+exploiting scale-free patterns has meant relatively less is known about
+mechanisms that produce non-scale-free structural patterns}, e.g., those
+with degree distributions better fitted by a log-normal. Two important
+directions of future work will be the \textbf{development and validation
+of novel mechanisms for generating more realistic degree structure in
+networks}, and novel statistical techniques for identifying or
+untangling them given empirical data\Huge''\normalsize
+\end{quote}
+
+\raggedleft
+
+-- \textbf{p.~8, Broido and Clauset (2019)}
+
+\raggedright
+
+See Holme (2019) for a recent reference on the Scale-free issue.
+
+\end{frame}
+
+\begin{frame}{An Idea}
+\protect\hypertarget{an-idea}{}
+
+What about using ERGMs to generate null distributions?\pause
+
+\begin{itemize}
+\item
+  Even for small networks, we can generate thousands of unique graphs,
+  so sample size is not a problem.\pause
+\item
+  As a difference from permutation tests:\pause
+
+  \begin{itemize}
+  \item
+    ERGMs provide a more meaningful/realistic (or comprehensive if you
+    like) data generating process\pause
+  \item
+    On average, sampled networks will \textbf{look like the original}
+    graph (addressing Broido and Clauset (2019)'s comments).\pause
+  \end{itemize}
+\end{itemize}
+
+In principle, this would be equivalent to a revised rewiring
+test\ldots{}
+
+\end{frame}
+
+\begin{frame}{Algorithm}
+\protect\hypertarget{algorithm}{}
+
+\begin{enumerate}
+\item
+  Estimate an ERGM (estimates can come from a single graph or pooled
+  estimates). We denote the data-generating-process of this model as
+  \(\mathcal{D}: \Theta\times \mathcal{X}\mapsto \GRAPH\).\pause
+\item
+  Calculate the value \(t_0 = t(\Graph, Y)\), the observed test
+  statistic (e.g.~correlation between triads and \(\depvar\)).\pause
+\item
+  Now, for \(b \in \{1, \dots, B\}\) do:\pause
+
+  \begin{enumerate}
+  \item
+    For each group \(j\) in \(\{1, \dots, J\}\), draw a new network
+    \(\graph_j^b\sim\mathcal{D}(\hat{\theta}, X_j)\), this new sequence
+    is denoted \(\Graph^b\)\pause
+  \item
+    Using \(\Graph^b\) and \(Y\), calculate
+    \(t_b = t(\Graph^b, Y)\)\pause
+  \item
+    Next \(b\).\pause
+  \end{enumerate}
+\end{enumerate}
+
+This will generate a null distribution for the statistic \(t\), which we
+can use to compare against the observed statistic, \(t_0\).\pause
+
+\alert{Note} An important distinction to make is that structures that
+gave origin to the graph need not to be relevant for the team's
+performance \emph{per se}.
+
+\end{frame}
+
+\begin{frame}{Illustrated example}
+\protect\hypertarget{illustrated-example}{}
+
+Suppose that we have a 3 networks of sizes 4, 4, and 5 respectively. The
+
+\footnotesize
+
+\def\svgwidth{.8\linewidth}
+\begin{figure}
+\centering
+\input{fig/struct-test.pdf_tex}
+\end{figure}
+
+\normalsize
+
+We can use the distribution of the sequence \(\{t_1, \dots, t_B\}\) as
+null to compare against \(t_0\)
+
+\end{frame}
+
+\begin{frame}[fragile]{Extended example with \texttt{fivenets}}
+\protect\hypertarget{extended-example-with-fivenets}{}
+
+\scriptsize
+
+\normalsize
+
+Going back to our \texttt{fivenets} example: \pause
+
+\begin{itemize}
+\item
+  Recall that our data-generating process for \(\Graph\) was an ERGMito
+  with parameters
+  \(\left(\theta_{edges}, \theta_{\mbox{\texttt{nodematch("female")}}}\right)\).\pause
+\item
+  Imagine that \(\depvar_\graph = \sufstats{\graph} + \varepsilon\),
+  with \(\varepsilon\sim N(0,1)\) and \(\sufstats{\graph}\) as the
+  number of ties sent to women (\texttt{nodeicov("female")} in
+  \texttt{ergm})\pause
+\item
+  Our test statistic \(t\) is the correlation between \(\depvar\) and
+  \(\sufstats{\graph}\)\pause
+\item
+  The data looks something like this\pause
+\end{itemize}
+
+\scriptsize
+
+\begin{longtable}[]{@{}rr@{}}
+\toprule
+y & s(g)\tabularnewline
+\midrule
+\endhead
+1.0138091 & 2\tabularnewline
+0.6051448 & 1\tabularnewline
+4.3085153 & 2\tabularnewline
+0.9547600 & 0\tabularnewline
+-0.1330788 & 1\tabularnewline
+\bottomrule
+\end{longtable}
+
+\normalsize
+
+\end{frame}
+
+\begin{frame}[fragile]
+
+We will try to assess the presence/absence of an association between the
+outcome \(\depvar\) and the number of ties received by women,
+\texttt{nodeicov("female")}, using both a linear regression model and
+our test\pause
+
+\begin{itemize}
+\item
+  \emph{Our approach} Is the the observed correlation statistic
+  \(t_0 = \mbox{cor}\left(y, \sufstats{\graph}\right)\) different than
+  as expected by chance (assuming \(\graph\) follows an ERGM
+  distribution)?\pause
+\item
+  \emph{OLS approach} In the following model:\pause
+
+  \[
+  \depvar = \alpha + \theta^{OLS}\sufstats{\graph} + \varepsilon,\quad\varepsilon\sim N(0,1)
+  \] is the \(\theta_{OLS}\) parameter significantly different from
+  zero?
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Extended example with \texttt{fivenets} (cont'd)}
+\protect\hypertarget{extended-example-with-fivenets-contd}{}
+
+\begin{figure}
+\centering
+
+\scriptsize
+
+
+\includegraphics[width=.7\linewidth]{index_files/figure-beamer/fivenets-print-results-partII-1} 
+\normalsize
+
+\caption{Comparing our method against a linear regression. Our proposed method returned a two sided p-value of 0.045, while the pvalue for the OLS coefficient was 0.311.}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Concluding remarks}
+\protect\hypertarget{concluding-remarks}{}
+
+Exponential Random Graph Models for Small Networks:\pause
+
+\begin{enumerate}
+\item
+  Not a new thing,\pause{} what's new is the tool to do so in a smooth
+  way.\pause
+\item
+  Preliminary results (both from simulations and applications) look
+  encouraging.\pause
+\item
+  Still work to do (on the development side of things): Goodness of fit
+  tests, better algorithms for drawing random graphs, Bayesian models
+  \pause (because is \emph{great} fun\ldots{}), etc.\pause
+\item
+  Can be extended to other types of ERGMs\ldots{} our next target:
+  TERGMs (Separable Exponential Random Graph Models)\pause
+\end{enumerate}
+
+Test for Association between graph level outcomes and graph
+structures:\pause
+
+\begin{enumerate}
+\item
+  Still need to run simulation studies to explore \textbf{power} and
+  \textbf{false discovery} rates.\pause
+\item
+  Also on the development side of things, need to make things a bit
+  faster and lightweight.\pause
+\item
+  Working on a more formal statistical framework (when is it a good/bad
+  idea to use this kind of method).
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Thanks!}
+\protect\hypertarget{thanks}{}
+
+\begin{centering}
+\includegraphics[width = .1\linewidth]{usc.pdf}
+
+\large \textbf{\textcolor{USCCardinal}{George G. Vega Yon}}
+
+\normalsize Let's chat! 
+
+\href{mailto:vegayon@usc.edu}{vegayon@usc.edu} 
+
+\href{https://ggvy.cl}{https://ggvy.cl} 
+
+\includegraphics[width=.02\linewidth]{github.png}\href{https://github.com/gvegayon}{@gvegayon}
+
+\includegraphics[width=.02\linewidth]{twitter.png}\href{https://twitter.com/gvegayon}{@gvegayon}
+
+\end{centering}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]{References}
+\protect\hypertarget{references}{}
+
+\hypertarget{refs}{}
+\leavevmode\hypertarget{ref-rmarkdown}{}%
+Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin
+Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, Winston Chang, and
+Richard Iannone. 2018. \emph{Rmarkdown: Dynamic Documents for R}.
+\url{https://rmarkdown.rstudio.com}.
+
+\leavevmode\hypertarget{ref-broido2019}{}%
+Broido, Anna D, and Aaron Clauset. 2019. ``Scale-Free Networks Are
+Rare.'' \emph{Nature Communications} 10 (1): 1017.
+
+\leavevmode\hypertarget{ref-Csardi2015}{}%
+Csardi, Gabor. 2015. \emph{Igraphdata: A Collection of Network Data Sets
+for the 'Igraph' Package}.
+\url{https://CRAN.R-project.org/package=igraphdata}.
+
+\leavevmode\hypertarget{ref-Geyer1992}{}%
+Geyer, Charles J., and Elizabeth A. Thompson. 1992. ``Constrained Monte
+Carlo Maximum Likelihood for Dependent Data.'' \emph{Journal of the
+Royal Statistical Society. Series B (Methodological)} 54 (3): 657--99.
+\url{http://www.jstor.org/stable/2345852}.
+
+\leavevmode\hypertarget{ref-Handcock2003}{}%
+Handcock, Mark S. 2003. ``Assessing Degeneracy in Statistical Models of
+Social Networks.'' \emph{Working Paper No. 39} 76 (39): 33--50.
+\url{https://doi.org/10.1.1.81.5086}.
+
+\leavevmode\hypertarget{ref-Handcock2018}{}%
+Handcock, Mark S., David R. Hunter, Carter T. Butts, Steven M. Goodreau,
+Pavel N. Krivitsky, and Martina Morris. 2018. \emph{Ergm: Fit, Simulate
+and Diagnose Exponential-Family Models for Networks}. The Statnet
+Project (\url{http://www.statnet.org}).
+\url{https://CRAN.R-project.org/package=ergm}.
+
+\leavevmode\hypertarget{ref-Handcock2006}{}%
+Handcock, Mark, Peng Wang, Garry Robins, Tom Snijders, and Philippa
+Pattison. 2006. ``Recent developments in exponential random graph (p*)
+models for social networks.'' \emph{Social Networks} 29 (2): 192--215.
+\url{https://doi.org/10.1016/j.socnet.2006.08.003}.
+
+\leavevmode\hypertarget{ref-Holme2019}{}%
+Holme, Petter. 2019. ``Rare and everywhere: Perspectives on scale-free
+networks.'' \emph{Nature Communications} 10 (1): 1016.
+\url{https://doi.org/10.1038/s41467-019-09038-8}.
+
+\leavevmode\hypertarget{ref-hunter2008}{}%
+Hunter, David R., Mark S. Handcock, Carter T. Butts, Steven M. Goodreau,
+and Martina Morris. 2008. ``Ergm: A Package to Fit, Simulate and
+Diagnose Exponential-Family Models for Networks.'' \emph{Journal of
+Statistical Software} 24 (3): 1--29.
+
+\leavevmode\hypertarget{ref-Kim2017}{}%
+Kim, Young Ji, David Engel, Anita Williams Woolley, Jeffrey Yu-Ting Lin,
+Naomi McArthur, and Thomas W. Malone. 2017. ``What Makes a Strong Team?:
+Using Collective Intelligence to Predict Team Performance in League of
+Legends.'' In \emph{Proceedings of the 2017 Acm Conference on Computer
+Supported Cooperative Work and Social Computing}, 2316--29. CSCW '17.
+New York, NY, USA: ACM. \url{https://doi.org/10.1145/2998181.2998185}.
+
+\leavevmode\hypertarget{ref-Milo2004}{}%
+Milo, R, N Kashtan, S Itzkovitz, M E J Newman, and U Alon. 2004. ``On
+the uniform generation of random graphs with prescribed degree
+sequences.'' \emph{Arxiv Preprint Condmat0312028} cond-mat/0: 1--4.
+\url{http://arxiv.org/abs/cond-mat/0312028}.
+
+\leavevmode\hypertarget{ref-R}{}%
+R Core Team. 2018. \emph{R: A Language and Environment for Statistical
+Computing}. Vienna, Austria: R Foundation for Statistical Computing.
+\url{https://www.R-project.org/}.
+
+\leavevmode\hypertarget{ref-Wasserman1996}{}%
+Wasserman, Stanley, and Philippa Pattison. 1996. ``Logit models and
+logistic regressions for social networks: I. An introduction to Markov
+graphs andp.'' \emph{Psychometrika} 61 (3): 401--25.
+\url{https://doi.org/10.1007/BF02294547}.
+
+\leavevmode\hypertarget{ref-knitr}{}%
+Xie, Yihui. 2018. \emph{Knitr: A General-Purpose Package for Dynamic
+Report Generation in R}. \url{https://yihui.name/knitr/}.
+
+\end{frame}
+
+\end{document}

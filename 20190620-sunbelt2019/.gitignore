@@ -1,0 +1,11 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+slides_*
+*_cache
+index_*
+*.log
+*.aux
+*.rds
+

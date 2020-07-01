@@ -1,0 +1,306 @@
+---
+title: "A quick introduction to the ergmito R package"
+author: "George G Vega Yon"
+date: "SONIC Speaker Series<br>Northwestern University, IL<br>March 20, 2019"
+output:
+  - github_document
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(out.width = 600)
+```
+
+## Contents
+
+1. Setup
+
+Key parts of `ergmito`
+
+2.  Likelihood function
+
+3.  Estimation function
+
+4.  Simulation
+
+Using gnet
+
+5.  A preview example
+
+## Setup 
+
+- Install the `ergmito` R package: Follow the instructions available on github https://github.com/muriteams/ergmito
+
+- Install the `gnet` R package: Follow the instructions available on github https://github.com/muriteams/ergmito
+
+- Install the `ergm` R package: `install.packages("ergm")`
+
+## Likelihood
+
+- The `ergmito` package's core function consists on the likelihood function
+
+- The function itself is a wrapper of `ergm::ergm.allstats` which returns exactly that:
+  all the statistics of a graph of a given size.
+  
+- One important detail: We are not calculating exactly the same function as the
+  one observed in the formula for ERGMs, we are using the fact that **isomorphism** occurs farily often, so instead we used weights:
+
+## Optimization
+
+- The `ergmito` function works in the following way:
+    
+    1.  Reads in the data and creates a log-likelihood function together with the corresponding gradient function.
+    
+    2.  Uses the `stats::optim` function in R to maximize the log-likelihood. Some details:
+        
+        a.  Uses the "BFGS" algorithm for optimization (standard in R)
+        
+        b.  Instead of approximating the gradient, we pass the true analytical gradient (since log-likelihood can be computed exactly, so this can be).
+        
+        c.  Solves the same optimization problem 5 times (see the `ntries` parameter) just to make sure that we are getting a maximum.
+        
+    The last point after experiencing some convergence issues in the optmization algorithms which were not yielding consistent results. Earlier we were using the limited memory bounded version of BFGS which turned out not to be very appropiate for us.
+    
+
+## Example 1: The fivenets network
+
+-   This network was generated using the sampler function available in the package (`ergmito::new_rergmito`)
+
+-   The population parameters in this dataset are `par[edges] = -2.0` and `par[nodematch.female] = 0.2`.
+
+-   Before fitting the true model, let's take a look at the simplest example, estimating the probability of a bernoulli graph:
+    
+    ```{r part1-initial-fit}
+    library(ergmito)
+    
+    data("fivenets", package="ergmito")
+    
+    (model0 <- ergmito(fivenets ~ edges))
+    ```
+
+-   Since this is a very simple model (no markovian dependency, i.e. edges are independent), we could have just estimated this by treating the total number of observed ties as a binomal random variable. In such case, the MLE estimate is simply the total number of edges over the possible number of edges. We can compare the odds of this model with the binomial MLE estimate (should obtain the same):
+
+    ```{r part1-proof-of-concept}
+    # Calculating the probability of observing a tie
+    odds <- exp(coef(model0))
+    odds/(1 + odds)
+    
+    # Figuring out MLE estimate
+    n <- nvertex(model0) # This function returns the number of vertices
+    m <- nedges(model0)  # this other function, the number of ties (see ?nvertex)
+    
+    # Since model0 has multiple networks, both m and n are vectors
+    n; m
+    
+    # MLE for the probability of a tie (this SHOULD match the above)
+    mean(m/(n*(n-1)))
+    ```
+
+-   Just like `ergm` objects, `ergmito` objects have a lot of components. Let's take a look at what the object includes:
+
+    ```{r part1-str}
+    str(model0, max.level = 1)
+    ```
+    
+    The `optim.out` component is what the `stats::optim` function returns
+    
+    ```{r part1-optim.out}
+    str(model0$optim.out)
+    ```
+    
+    The `formulae` object is what actually holds the log-likelihood function and the gradient. It has its own print method:
+    
+    ```{r part1-formulae}
+    model0$formulae
+    ```
+
+---
+
+-   We can use the different methods available for `ergmito` class object:
+    
+    ```{r part1-methods}
+    confint(model0)
+    vcov(model0)
+    logLik(model0)
+    AIC(model0)
+    BIC(model0)
+    summary(model0)
+    nobs(model0)
+    ```
+
+-   Now, let's try to fit other models. We will store the results and try to add them up together in a single output table
+    
+    ```{r part1-morefits}
+    model1 <- ergmito(fivenets ~ edges + ttriad)
+    model2 <- ergmito(fivenets ~ edges + nodeicov("female"))
+    model3 <- ergmito(fivenets ~ edges + nodematch("female"))
+    ```
+
+---
+
+-   Furthermore, the package includes methods for the [**texreg**](http://github.com/leifeld/texreg/) R package, so we can export lists of fitted models directly
+    
+    ```{r part1-texreg, results='asis'}
+    library(texreg)
+    htmlreg(
+      l       = list(Baseline = model0, Balance = model1, icovFemale = model2, Homophily = model3),
+      doctype = FALSE,
+      caption = "My first ergmito table"
+      )
+    ```
+    
+## Bootstrap
+
+-   We also include a way to perform bootstrapping.
+
+-   In the following example we are performing bootstrap on model 3 using 4 cpus (so it is done using parallel computing):
+
+    ```{r part1-bootstrap, cache=TRUE}
+    (ans <-ergmito_boot(model3, R=1000, ncpus = 4))
+    summary(ans)
+    ```
+    
+    This object has an additional component, the bootstrap distribution of the parameters:
+    
+    ```{r part1-bootstrap-dist, cache=TRUE}
+    op <- par(mfrow = c(1, 2))
+    hist(ans$dist[,"edges"], main = "edges", xlab = "Estimated coeff", breaks = 100)
+    hist(ans$dist[,"nodematch.female"], main = "nodematch.female", xlab = "Estimated coeff", breaks = 100)
+    par(op)
+    ```
+    
+    
+-   This is available for the users, although its usage is not encouraged.
+
+    
+## Simulating networks
+
+-   An important part of the current implementation of the sampling function is been able to generate the support of the graphs, this is, the power set of size $2^{n(n-1)}$ in the case of directed graphs.
+
+-   The function `powerset` does exactly that. Let's check it out:
+    
+    In the simplest case (2 individuals), we have 4 possible networks:
+    
+    ```{r part2-sampler-powerset}
+    powerset(2) 
+    ```
+    
+    But the number of networks starts increasing fast, e.g.
+        
+    ```{r part2-sampler-powerset2, cache=TRUE}
+    sizes <- c(length(powerset(2)), length(powerset(3)), length(powerset(4)))
+    plot(
+      y=sizes, x=2:4, log="y", type="b",
+      ylab = "Size of the support (log-scale)",
+      xlab = "Number of Nodes",
+      main = "Careful to go above 5..."
+      )
+    ```
+
+-   Using this function, the function `new_rergmito` creates an object of class `ergmito_sampler` that can be used to draw samples from little ERGMs fast. Let's see a simple example for a network of size 4
+    
+    ```{r part2-sampler-edges}
+    sampler0 <- new_rergmito(rbernoulli(4) ~ edges, theta = c(-1), sizes = 4)
+    
+    # How close do we get to the population parameter -1 with 50 networks
+    set.seed(1)
+    dat <- sampler0$sample(50, s = 4)
+    summary(ergmito(dat ~ edges))
+    ```
+    
+    How about making it a bit more complex, let's throw in transitive triads
+    
+    ```{r part2-sampler-edges-ttriad}
+    sampler1 <- new_rergmito(rbernoulli(4) ~ edges + ttriad, theta = c(-2, 1))
+    
+    set.seed(1)
+    dat <- sampler1$sample(50, s = 4)
+    summary(ergmito(dat ~ edges + ttriad))
+    ```
+
+-   In some cases we would like to generate more complex samplers using, for example, other sufficient statistics. While all `ergm` terms are available, not all are available efficiently; only those listed in `count_stats` have vectorized versions:
+    
+    ```{r part2-sampler-count_stats}
+    AVAILABLE_STATS() # the statistics listed here can be computed fast
+    ```
+
+## Counting network statistics
+
+-   A significant part of `ergmito` is about counting sufficient statistics.
+
+-   In the `ergm` package, the function `ergm::summary_formula` provides a way of doing such. The problem with it is that it was not designed to be vectorized.
+
+-   Our function `count_stats()` does so in an efficient way, so we can count stats in al list of adjacency matrices fast
+    
+    ```{r part2-sampler-count_stats_vs_summary, cache=TRUE}
+    pset4 <- powerset(4)
+    system.time({ans0 <- count_stats(pset4, "ttriad")})
+    system.time({ans1 <- sapply(pset4, function(i) ergm::summary_formula(i ~ ttriad))})
+    
+    # Are we getting the same?
+    identical(as.vector(ans0), unname(ans1))
+    ```
+
+-   As mentioned in the previous section, the list of available statistics is provided by `AVAILABLE_STATS()`.
+
+
+## gnet: Reproducing the example of the presentation
+
+```{r part3-gnet-example-setup}
+library(ergmito)
+library(gnet)
+# Loading the fivents dataset. We actually know that data generating process,
+# so we use these paramaters for the model
+data(fivenets, package="ergmito")
+```
+
+```{r part3-gnet-example-dgp}
+# We will generate a group level variable that is related to the proportion of
+# females in the group
+set.seed(52)
+# y <- count_stats(fivenets ~ nodeocov("female"))
+# y <- y + rnorm(nnets(fivenets))
+y <- structure(c(1.01380909984854, 0.605144783941265, 4.30851530552903, 
+0.954760011709497, -0.133078830968053), .Dim = c(5L, 1L), .Dimnames = list(
+    NULL, "nodeocov(\"female\")"))
+```
+
+```{r part3-gnet-example-test}
+# First, we define the function
+f02 <- function(g, y) {
+  cor(count_stats(g ~ nodeocov("female")), y, use = "complete.obs")[1] 
+}
+
+# Then we can simple call the fuction struct_test to do it for us:
+test_struct <- struct_test(
+  fivenets ~ edges + nodematch("female"), y = y, R=3000,
+  stat = f02
+  )
+test_struct
+```
+
+Let's see what we have here:
+
+```{r part3-gnet-example-str}
+names(test_struct)
+test_struct$samplers
+```
+
+
+```{r part3-gnet-example-ols}
+# Comparing with what we get from a
+x <- count_stats(fivenets ~ nodeocov("female"))
+(test_ols <- summary(lm(y ~ x)))
+```
+
+Results
+
+```{r part3-gnet-example-plot}
+op <- par(mfrow=c(1, 2))
+hist(test_struct$t, breaks=50, col="gray", border="transparent", main = "Null distribution of t",
+     xlab = "Values of t")
+abline(v = test_struct$t0, col="steelblue", lwd=2, lty="dashed")
+plot(y ~ x, main = "Linear regression", xlab="s(g)", ylab = "y")
+abline(lm(y~x), lty="dashed", lwd=2)
+par(op)
+```
+
