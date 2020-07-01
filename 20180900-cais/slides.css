@@ -1,0 +1,24 @@
+p {
+  text-align: left;
+}
+
+code {
+  color: indigo;
+}
+.reveal h1 {
+  font-weight: bold;
+}
+
+.reveal h2, .reveal h3 {
+  color: #21908CFF;
+  font-weight: normal;
+}
+
+.reveal strong, .reveal b {
+  color:  #440154FF;
+  font-weight: bolder;
+}
+
+img-std {
+  width: 600px;
+}

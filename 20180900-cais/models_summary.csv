@@ -1,0 +1,7 @@
+"Model","Focus","Temporal","Scalable"
+"SAR","Behavior","Can be (discrete)","Yes"
+"ERGM","Network","Can be (discrete)","No (but SERGM can)"
+"SOAM (Siena)","Behavior+Network","Yes (continuous)","No"
+"Net Match","Behavior","Can be (discrete)","Yes"
+"Latent Net","Network","?","No"
+

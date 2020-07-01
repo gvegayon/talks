@@ -1,0 +1,513 @@
+% Copyright 2007 by Till Tantau
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+% \ProvidesPackageRCS $Header: /Users/joseph/Documents/LaTeX/beamer/base/themes/inner/beamerinnerthemedefault.sty,v 580088513a67 2014/06/30 17:15:11 ivan $
+
+
+\mode<presentation>
+\RequirePackage{tikz}
+% \usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+
+% Some images:
+
+\pgfdeclareimage[width=14pt,height=12pt]{beamericonbook}{beamericonbook}
+\pgfdeclareimage[width=14pt,height=12pt]{beamericonbookshaded}{beamericonbook.20}
+\pgfaliasimage{beamericonbook.!20opaque}{beamericonbookshaded}
+\pgfaliasimage{beamericonbook.!15opaque}{beamericonbookshaded}
+\pgfaliasimage{beamericonbook.!10opaque}{beamericonbookshaded}
+\pgfaliasimage{beamericonbook.!5opaque}{beamericonbookshaded}
+\pgfaliasimage{beamericonbook.!2opaque}{beamericonbookshaded}
+\pgfdeclareimage[width=11pt,height=14pt]{beamericonarticle}{beamericonarticle}
+\pgfdeclareimage[width=11pt,height=14pt]{beamericonarticleshaded}{beamericonarticle.20}
+\pgfaliasimage{beamericonarticle.!20opaque}{beamericonarticleshaded}
+\pgfaliasimage{beamericonarticle.!15opaque}{beamericonarticleshaded}
+\pgfaliasimage{beamericonarticle.!10opaque}{beamericonarticleshaded}
+\pgfaliasimage{beamericonarticle.!5opaque}{beamericonarticleshaded}
+\pgfaliasimage{beamericonarticle.!2opaque}{beamericonarticleshaded}
+\pgfdeclareimage[width=14pt,height=14pt]{beamericononline}{beamericononline}
+\pgfdeclareimage[width=14pt,height=14pt]{beamericononlineshaded}{beamericononline.20}
+\pgfaliasimage{beamericononline.!20opaque}{beamericononlineshaded}
+\pgfaliasimage{beamericononline.!15opaque}{beamericononlineshaded}
+\pgfaliasimage{beamericononline.!10opaque}{beamericononlineshaded}
+\pgfaliasimage{beamericononline.!5opaque}{beamericononlineshaded}
+\pgfaliasimage{beamericononline.!2opaque}{beamericononlineshaded}
+
+% Title page: default
+
+\defbeamertemplate*{title page}{usckeck}[1][]
+{
+  % \setbeamercolor{background canvas}{bg=usccardinal}
+  \begin{tikzpicture}[remember picture,overlay]
+        \node[at=(current page.center),fill=usccardinal, minimum width=\paperwidth, minimum height=\paperheight] {};
+  \end{tikzpicture}
+  \vbox{}
+  \vfill
+  \begingroup
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center,#1]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%     
+    \end{beamercolorbox}%
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=8pt,center,#1]{author}
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center,#1]{institute}
+      \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center,#1]{date}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}\vskip0.5em
+    {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+  \endgroup
+  \vfill
+  
+  % Covering page number
+  \begin{tikzpicture}[remember picture,overlay]
+        \node[at=(current page.south),fill=uscgold, minimum width=\paperwidth, minimum height=.07\paperheight] (goldline) {};
+        % \node[at=(goldline.north west)+(.025\paperwidth, 0),anchor=south]  {\includegraphics[width=0.1\paperwidth]{2-Line_KeckSOMofUSC_CardOnGold1.eps}};
+  \end{tikzpicture}
+  
+  % USC logo
+  \begin{textblock*}{.2\paperwidth}(-.05\paperwidth, -.4cm)
+  \includegraphics[width=1\textwidth]{2-Line_KeckSOMofUSC_CardOnGold1.eps}
+  \end{textblock*}
+}
+
+\defbeamertemplate*{section intro}{usckeck}[2][]
+{
+  % \setbeamercolor{background canvas}{bg=usccardinal}
+  \begin{tikzpicture}[remember picture,overlay]
+        \node[at=(current page.center),fill=usccardinal, minimum width=\paperwidth, minimum height=\paperheight] {};
+  \end{tikzpicture}
+  \vbox{}
+  % \usebeamerfont{title}
+  {\Large \bf \textcolor{uscgold}{#1}} \vskip0.25em
+  {\bf \large \textcolor{uscgold}{#2}}
+  
+  
+}
+
+% Part page: default
+
+\defbeamertemplate*{part page}{usckeck}[1][]
+{
+  \begingroup
+    \centering
+    {\usebeamerfont{part name}\usebeamercolor[fg]{part name}\partname~\insertromanpartnumber}
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=16pt,center,#1]{part title}
+      \usebeamerfont{part title}\insertpart\par
+    \end{beamercolorbox}
+  \endgroup
+}
+
+
+% Section page: default
+
+\defbeamertemplate*{section page}{usckeck}[1][]
+{
+  \begingroup
+    \centering
+    {\usebeamerfont{section name}\usebeamercolor[fg]{section name}\sectionname~\insertsectionnumber}
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=12pt,center,#1]{part title}
+      \usebeamerfont{section title}\insertsection\par
+    \end{beamercolorbox}
+  \endgroup
+}
+
+% Subection page: default
+
+\defbeamertemplate*{subsection page}{usckeck}[1][]
+{
+  \begingroup
+    \centering
+    {\usebeamerfont{subsection name}\usebeamercolor[fg]{subsection name}\subsectionname~\insertsubsectionnumber}
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=8pt,center,#1]{part title}
+      \usebeamerfont{subsection title}\insertsubsection\par
+    \end{beamercolorbox}
+  \endgroup
+}
+
+
+
+
+%
+% Table of contents
+%
+
+% GEORGEEEEE
+
+% \defbeamertemplateparent{sections/subsections in toc}{section in toc,subsection in toc,subsubsection in toc}
+% {}
+% 
+% \defbeamertemplateparent{sections/subsections in toc shaded}{section in toc shaded,subsection in toc shaded,subsubsection in toc shaded}[1][20]
+% {[#1]}
+
+% \setbeamertemplate{sections/subsections in toc}
+% {}
+% 
+% \setbeamertemplate{sections/subsections in toc shaded}[1][20]
+% {[#1]}
+
+
+
+% (sub-)section in toc: default
+
+\defbeamertemplate*{section in toc}{usckeck}
+{\inserttocsection\par}
+
+\defbeamertemplate*{subsection in toc}{usckeck}
+{\leavevmode\leftskip=1.5em\inserttocsubsection\par}
+
+\defbeamertemplate*{subsubsection in toc}{usckeck}
+{\leavevmode\normalsize\usebeamerfont{subsection in toc}\leftskip=3em%
+  \usebeamerfont{subsubsection in toc}\inserttocsubsubsection\par}
+
+
+% (sub-)section in toc shaded, default
+
+\defbeamertemplate*{section in toc shaded}{usckeck}[1][20]
+{\begin{colormixin}{#1!parent.bg}\usebeamertemplate{section in toc}\end{colormixin}\unskip}
+
+\defbeamertemplate*{subsection in toc shaded}{usckeck}[1][20]
+{\begin{colormixin}{#1!parent.bg}\usebeamertemplate{subsection in toc}\end{colormixin}\unskip}
+
+\defbeamertemplate*{subsubsection in toc shaded}{usckeck}[1][20]
+{\begin{colormixin}{#1!parent.bg}\usebeamertemplate{subsubsection in toc}\end{colormixin}\unskip}
+
+
+
+
+
+%
+% Item
+%
+
+% \defbeamertemplateparent{items}{itemize items,enumerate items}
+% {}
+
+
+% Itemize items
+
+% \defbeamertemplateparent{itemize items}{itemize item,itemize subitem,itemize subsubitem}
+% {}
+
+
+% Itemize items, default
+
+\defbeamertemplate*{itemize item}{usckeck}{\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths$\blacktriangleright$}}
+\defbeamertemplate*{itemize subitem}{usckeck}{\tiny\raise1.5pt\hbox{\donotcoloroutermaths$\blacktriangleright$}}
+\defbeamertemplate*{itemize subsubitem}{usckeck}{\tiny\raise1.5pt\hbox{\donotcoloroutermaths$\blacktriangleright$}}
+
+
+% Enumerate items, default
+
+% \defbeamertemplateparent{enumerate items}{enumerate item,enumerate subitem,enumerate subsubitem,enumerate mini}
+% {}
+
+\defbeamertemplate*{enumerate item}{usckeck}{\insertenumlabel.}
+\defbeamertemplate*{enumerate subitem}{usckeck}{\insertenumlabel.\insertsubenumlabel}
+\defbeamertemplate*{enumerate subsubitem}{usckeck}{\insertenumlabel.\insertsubenumlabel.\insertsubsubenumlabel}
+\defbeamertemplate*{enumerate mini template}{usckeck}{\insertenumlabel}
+
+
+% Description item width
+
+\defbeamertemplate*{description item}{usckeck}{\insertdescriptionitem}
+
+
+
+% Itemize/Enumerate body
+
+\defbeamertemplate*{itemize/enumerate body begin}{usckeck}{}
+\defbeamertemplate*{itemize/enumerate body end}{usckeck}{}
+
+\defbeamertemplate*{itemize/enumerate subbody begin}{usckeck}{}
+\defbeamertemplate*{itemize/enumerate subbody end}{usckeck}{}
+
+\defbeamertemplate*{itemize/enumerate subsubbody begin}{usckeck}{}
+\defbeamertemplate*{itemize/enumerate subsubbody end}{usckeck}{}
+
+
+
+% Alerted text
+
+\defbeamertemplate*{alerted text begin}{usckeck}{\setbeamercolor{local structure}{parent=alerted text}}
+
+
+
+% Structured text
+
+% empyt defaults
+
+
+% Bibliography items
+
+\defbeamertemplate*{bibliography item}{usckeck}
+{\lower3.5pt\hbox{\hskip2pt\pgfuseimage{beamericonarticle}\hskip1pt}}
+
+\defbeamertemplate*{bibliography entry article}{usckeck}{}
+\defbeamertemplate*{bibliography entry title}{usckeck}{\par}
+\defbeamertemplate*{bibliography entry location}{usckeck}{\par}
+\defbeamertemplate*{bibliography entry note}{usckeck}{\par}
+
+
+% Buttons
+
+\newdimen\beamer@dima%
+\newdimen\beamer@dimb%
+
+\defbeamertemplate*{button}{usckeck}
+{%
+  \setbox\beamer@tempbox=\hbox{{\insertbuttontext}}%
+  \ht\beamer@tempbox=6pt%
+  \dp\beamer@tempbox=0pt%
+  \setbox\beamer@tempbox=\vbox{\box\beamer@tempbox\vskip2pt}%
+  \beamer@tempdim=\wd\beamer@tempbox%
+  \beamer@dima=\beamer@tempdim\advance\beamer@dima by2.2pt
+  \beamer@dimb=\beamer@tempdim\advance\beamer@dimb by4pt
+  \begin{pgfpicture}{-4pt}{0pt}{\the\beamer@tempdim}{8pt}
+    \color{bg}
+    \pgfsetlinewidth{0.8pt}
+    \pgfpathqmoveto{0pt}{0pt}
+    \pgfpathqcurveto{-2.2pt}{0pt}{-4pt}{1.8pt}{-4pt}{4pt}
+    \pgfpathqcurveto{-4pt}{6.2pt}{-2.2pt}{8pt}{0pt}{8pt}
+    \pgfpathlineto{\pgfpoint{\the\beamer@tempdim}{8pt}}
+    \pgfpathcurveto%
+    {\pgfpoint{\the\beamer@dima}{8pt}}%
+    {\pgfpoint{\the\beamer@dimb}{6.2pt}}%
+    {\pgfpoint{\the\beamer@dimb}{4pt}}
+    \pgfpathcurveto%
+    {\pgfpoint{\the\beamer@dimb}{1.8pt}}%
+    {\pgfpoint{\the\beamer@dima}{0pt}}%
+    {\pgfpoint{\the\beamer@tempdim}{0pt}}
+    \pgfpathclose
+    \pgfusepathqfill
+    \colorlet{bg}{parent.bg}
+    \usebeamercolor[fg]{button border}
+    \pgfpathqmoveto{0pt}{0pt}
+    \pgfpathqcurveto{-2.2pt}{0pt}{-4pt}{1.8pt}{-4pt}{4pt}
+    \pgfpathqcurveto{-4pt}{6.2pt}{-2.2pt}{8pt}{0pt}{8pt}
+    \pgfpathlineto{\pgfpoint{\the\beamer@tempdim}{8pt}}
+    \pgfpathcurveto%
+    {\pgfpoint{\the\beamer@dima}{8pt}}%
+    {\pgfpoint{\the\beamer@dimb}{6.2pt}}%
+    {\pgfpoint{\the\beamer@dimb}{4pt}}
+    \pgfpathcurveto%
+    {\pgfpoint{\the\beamer@dimb}{1.8pt}}%
+    {\pgfpoint{\the\beamer@dima}{0pt}}%
+    {\pgfpoint{\the\beamer@tempdim}{0pt}}
+    \pgfpathclose
+    \pgfusepathqstroke
+  \end{pgfpicture}%
+  \hskip-\beamer@tempdim%
+  \box\beamer@tempbox%
+  \kern4pt%
+}
+
+
+% Abstract
+
+\defbeamertemplate*{abstract title}{usckeck}
+{%
+  \begin{center}%
+    \abstractname
+  \end{center}%
+}
+
+\defbeamertemplate*{abstract begin}{usckeck}
+{\beamercolorbox[vmode]{abstract}\leftskip2em\rightskip2em plus 1fill\usebeamerfont*{abstract}}
+
+\defbeamertemplate*{abstract end}{usckeck}
+{\medskip\endbeamercolorbox}
+
+
+% Verse
+
+\defbeamertemplate*{verse begin}{usckeck}
+{\beamercolorbox[vmode]{verse}}
+
+\defbeamertemplate*{verse end}{usckeck}
+{\endbeamercolorbox}
+
+
+% Quotation
+
+\defbeamertemplate*{quotation begin}{usckeck}
+{\beamercolorbox[vmode]{quotation}}
+
+\defbeamertemplate*{quotation end}{usckeck}
+{\endbeamercolorbox}
+
+
+% Quote
+
+\defbeamertemplate*{quote begin}{usckeck}
+{\beamercolorbox[vmode]{quote}}
+
+\defbeamertemplate*{quote end}{usckeck}
+{\endbeamercolorbox}
+
+
+% Footnotes
+
+\defbeamertemplate*{footnote}{usckeck}
+{
+  \parindent 1em\noindent%
+  \raggedright
+  \hbox to 1.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
+}
+
+% Footline
+\defbeamertemplate*{footline}{usckeck}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.6\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle\hspace*{3em}
+    % \insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
+    \insertframenumber{} \hspace*{1ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+
+% Captions
+
+\defbeamertemplate*{caption}{usckeck}{
+{\bf\color{usccardinal}\insertcaptionname{} \insertcaptionnumber{}} \insertcaption
+}
+
+% \defbeamertemplate*{caption}{usckeck}
+% {%
+%   \raggedright
+%   {%
+%   {\bf\color{usccardinal}\insertcaptionname{} \insertcaptionnumber{}}
+%     \usebeamercolor[fg]{caption name}%
+%     \usebeamerfont*{caption name}%
+%     \insertcaptionname
+%     \usebeamertemplate{caption label separator}%
+%   }%
+%   \insertcaption\par
+% }
+\defbeamertemplate*{caption label separator}{usckeck}{:\ }
+
+% Blocks
+
+% % \defbeamertemplateparent{blocks}{block begin,block end,%
+% \makeatother
+% \defbeamertemplateparent*{blocks}{block begin,block end,
+%   block alerted begin,block alerted end,%
+%   block example begin,block example end}
+% {}
+% \makeatletter
+
+\defbeamertemplate*{block begin}{usckeck}
+{
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[colsep*=.75ex]{block title}
+    \usebeamerfont*{block title}\insertblocktitle%
+  \end{beamercolorbox}%
+  {\parskip0pt\par}%
+  \ifbeamercolorempty[bg]{block title}
+  {}
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+\defbeamertemplate*{block end}{usckeck}  
+{\end{beamercolorbox}\vskip\smallskipamount}
+
+\defbeamertemplate*{block alerted begin}{usckeck}
+{
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[colsep*=.75ex]{block title alerted}
+    \usebeamerfont*{block title alerted}\insertblocktitle%
+  \end{beamercolorbox}%
+  {\parskip0pt\par}%
+  \ifbeamercolorempty[bg]{block title alerted}
+  {}
+  {\ifbeamercolorempty[bg]{block body alerted}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body alerted}%
+  \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body alerted}%
+    \ifbeamercolorempty[bg]{block body alerted}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+
+\defbeamertemplate*{block alerted end}{usckeck}
+{\end{beamercolorbox}\vskip\smallskipamount}
+
+
+\defbeamertemplate*{block example begin}{usckeck}
+{
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[colsep*=.75ex]{block title example}
+    \usebeamerfont*{block title example}\insertblocktitle%
+  \end{beamercolorbox}%
+  {\parskip0pt\par}%
+  \ifbeamercolorempty[bg]{block title example}
+  {}
+  {\ifbeamercolorempty[bg]{block body example}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body example}%
+  \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body example}%
+    \ifbeamercolorempty[bg]{block body example}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+\defbeamertemplate*{block example end}{usckeck}
+{\end{beamercolorbox}\vskip\smallskipamount}
+
+
+
+
+% Theorems
+
+% \defbeamertemplateparent{theorems}{theorem begin,theorem end}
+% \makeatother
+% \defbeamertemplateparent*{theorems}{theorem begin,theorem end}
+% {}
+% \makeatletter
+
+\defbeamertemplate*{theorem begin}{usckeck}
+{%
+  \begin{\inserttheoremblockenv}
+  {%
+    \inserttheoremname
+    \ifx\inserttheoremaddition\@empty\else\ (\inserttheoremaddition)\fi%
+  }%
+}
+
+\defbeamertemplate*{theorem end}{usckeck}
+{\end{\inserttheoremblockenv}}
+
+
+% Proofs
+\defbeamertemplate*{proof begin}{usckeck}
+{\begin{block}{\insertproofname}}
+
+\defbeamertemplate*{proof end}{usckeck}
+{\end{block}}
+
+\defbeamertemplate*{qed symbol}{usckeck}
+{\openbox}
+
+
+\defbeamertemplate*{navigation symbols}{usckeck}{}
+
+\mode
+<all>

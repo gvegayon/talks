@@ -1,0 +1,21 @@
+# Latex removals
+*.log
+*.nav
+*.aux
+*.toc
+*.bbl
+*.bcf
+*.snm
+*.synctex.gz
+*.run.xml
+
+# Binaries
+*.docx
+*.doc
+*.xls
+*.xlsx
+*.ppt
+*.pptx
+
+*_cache/
+cache/
