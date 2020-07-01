@@ -1,0 +1,115 @@
+---
+title: 'Intro to R: A Workshop for HPCC Users (preface)<br><img src="fig/trojan-rlogo.svg" width="250px">'
+author: George G. Vega Yon<br>University of Southern California<br>Department of Preventive Medicine
+date: July 7th, 2018
+bibliography: intro2r.bib
+---
+
+# Before we start
+
+We will be using:
+
+-   R (of course), and you can get it from https://cloud.r-project.org/
+
+-   RStudio (highly recommended), an IDE for R, and you can get if from https://www.rstudio.com/products/rstudio/
+
+-   Materials for this presentation (including the presentation itself) can be downloaded from https://github.com/USCbiostats/intro2r-hcp-edition
+
+# What is R
+
+## The <img src="fig/Rlogo.svg" width="200px"> programming language 
+
+
+-   Free software oriented for **statistical computing** and **graphics** (although people use for everything now a days)
+
+-   Is maintain mostly by the [**R Core Team**](https://www.r-project.org/contributors.html){target="_blank"} (about 20 members worldwide), with the support of [**The R Foundation**](https://www.r-project.org/foundation/){target="_blank"}
+
+-   Has a thriving community of users and developers worldwide:
+      
+      -   Institutional support from: [**rOpenSci**](https://rOpenSci.org){target="_blank"}, [**R Consortium**](https://www.r-consortium.org){target="_blank"}, etc.
+          
+      -   About **13,000 packages**(libraries) on [CRAN](https://cran.r-project.org){target="_blank"} (The Comprehensive R Archive Network)
+      
+      -   More than 1,000 attendees in useR!2017 conference
+      
+------
+
+## A little bit of history
+
+<div align="center">
+<figure>
+<img src="fig/jchambers.jpg" height="200px">
+<img src="fig/rcreators.jpg" height="200px" alt="Picture by the New York Times https://nyti.ms/2GC3ruP">
+<figcaption>From left to right: John Chambers, Robert Gentleman, and Ross Ihaka.</figcaption>
+</figure>
+</div>
+
+* R [@R] is an implementation of the S (Statistics) programming language, which was created in 1976 by **[John Chambers](https://wikipedia.org/wiki/John_Chambers_(statistician))** while at Bell Labs. 
+
+* R itself was created by **[Ross Ihaka](https://wikipedia.org/wiki/Ross_Ihaka)** and **[Robert Gentleman](https://wikipedia.org/wiki/Robert_Gentleman_(statistician))** at the University of Auckland, New Zealand. First release in 1995.
+
+* Currently developed by the **[R Development Core Team](https://www.r-project.org/contributors.html)**, of which Chambers is a member. 
+
+(Source [wiki](https://wikipedia.org/wiki/R_(programming_language)))
+
+# The first lesson: Getting help 
+
+## in R
+
+In R, if you want to:
+
+*   Know about the `sqrt` function? `?sqrt`, or `help("sqrt")`
+
+*   Know about the `makeCluster` function in the R package `parallel`? `?parallel::makeCluster`, or `help("makeCluster", package="parallel")`
+
+*   Know about the Regular Expressions? `??"Regular Expressions"`, or `help.search("Regular Expressions")`
+
+*   Look at more in deph information about the Matrix package? `vignette(package="Matrix")`
+
+----
+
+## On the web
+
+*   Checkout the [CRAN Task Views](https://cran.r-project.org/web/views/)
+
+*   Take a look at the **rstats** tag on [StackOverflow.com](https://stackoverflow.com/questions/tagged/r)
+
+*   Visit the [r-bloggers.com](https://r-bloggers.com) website
+
+*   Read one of the dozens of online free books about R created with the [R package bookdown](https://cran.r-project.org/package=bookdown) at
+    [bookdown.org](https://bookdown.org/)
+    
+*   Ask a question on twitter using the [\#rstats](https://twitter.com/hashtag/rstats) hashtag.
+
+----
+
+## Books that I recommend
+
+*   The art of R programming https://nostarch.com/artofr.htm [@matloff2011art]
+
+*   Advanced R http://adv-r.had.co.nz/ [@wickham2015advanced]
+
+*   R Programming for Data Science https://bookdown.org/rdpeng/rprogdatascience/ [@peng2012r]
+
+*   R for Data Science http://r4ds.had.co.nz/ [@wickham2016r]
+
+*   Scientific Programming and Simulation using R [@jones2009introduction]
+
+
+# The first lesson: Getting help (How to read it?)
+
+
+<div align="center">
+<img src ="fig/help-sqrt.png" with="800px" style="box-shadow: 10px 10px 5px grey;">
+</div>
+
+# The first lesson: Getting help (a mental model)
+
+<div align = "center">
+<figure>
+<img src="fig/finding-a-function.svg" width ="800px">
+<figcaption>My own personal way of looking for R-based solutions to my problems (in science... of course)</figcaption>
+</figure>
+</div>
+
+# References
