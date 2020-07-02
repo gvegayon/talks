@@ -1,0 +1,269 @@
+\documentclass[aspectratio=169, 9pt]{beamer}
+
+% \transdissolve[duration=0.2] % Only works with Adobe Acrobat
+
+% \mode<handout>
+
+% Some important packages
+\usepackage{epstopdf}
+\hypersetup{colorlinks=false, urlcolor=red}
+\usepackage{booktabs}
+\linespread{1.3}
+\usepackage{tabularx}
+\usepackage{makecell} % For makecell within tables
+\usepackage{geometry}
+\usepackage{algorithm2e}
+\usepackage{amsmath, amssymb}
+\input{notation-thesis.tex}
+
+\usepackage[style=authoryear-comp]{biblatex}
+\addbibresource{bibliography.bib}
+% \renewcommand{\bibsection}{\subsubsection*{\bibname } }
+
+
+% Styles
+\usepackage{xcolor}
+\usepackage{colortbl}
+\definecolor{suffstat}{RGB}{10,159,0}
+\definecolor{normconst}{RGB}{87,38,231}
+\setbeamercolor{conclusions}{bg=usclightgray!60!white, fg=uscdarkgray}
+
+% Noice!
+\usetheme{usckeck}
+
+\title[ERGMito at SciTS 2020]{ERGMito
+\linebreak{\small Statistical Models for Small Team Social Networks}}
+\author[USC-CTSI]{
+\textbf{George G Vega Yon} \and
+Aileen Dinkjian \and
+Sarah Hamm-Alvarez \and
+Kayla de la Haye
+}
+\institute[USC Keck School of Medicine]{University of Southern California\\Keck School of Medicine}
+\date{June, 2020}
+
+% Some definitions
+\def\cursection{\frame{\frametitle{Contents}\tableofcontents[current]}}
+\newcommand{\ergmpkg}[0]{\texttt{ergm}}
+\newcommand{\ergmitopkg}[0]{\texttt{ergmito}}
+\newcommand{\aphylopkg}[0]{\texttt{aphylo}}
+\graphicspath{{.}{fig/}}
+
+\newcommand{\hreftwo}[2]{\href{#1}{\textbf{#2}}}
+
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% --------------------------- END OF PREAMBLE ----------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+\setbeamertemplate{note page}[plain]
+%\setbeameroption{show notes}
+\usepackage{pgfpages}
+% \setbeameroption{show notes on second screen}
+
+\newcommand{\hlc}[2]{{\only<#1>{\cellcolor{gray!50} #2}}}
+\newcommand{\nhlc}[2]{{\only<#1>{#2}}}
+
+\begin{document}
+% \SweaveOpts{concordance=TRUE}
+
+% ------------------------------------------------------------------------------
+\begin{frame}%[noframenumbering]
+\maketitle
+\end{frame}
+
+
+\begin{frame}
+\frametitle{What makes a successful team?}
+
+\small
+
+  \begin{minipage}[c]{.30\linewidth}
+  \begin{figure}
+  \includegraphics[width=.99\linewidth]{marie-etal.jpeg}
+  \caption{Nobel in Physics 1903: Henri Becquerel, Pierre Curie, and Marie Curie}
+  \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{.30\linewidth}
+  \begin{figure}
+  \includegraphics[width=.99\linewidth]{duflo.jpg}
+  \caption{Nobel in Economics 2019: Abhijit Banerjee, Esther Duflo, and Michael Kremer}
+  \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{.30\linewidth}
+  \begin{figure}
+  \includegraphics[width=.99\linewidth]{usa-women-team.jpg}
+  \caption{US 2019 Women's Soccer team}
+  \end{figure}
+  \end{minipage}
+
+\normalsize
+
+\pause{}A lot depends on human relations...
+
+\end{frame}
+
+% ------------------------------------------------------------------------------
+\begin{frame}
+
+\frametitle{What makes a successful team?}
+
+\begin{figure}
+\includegraphics[width=.4\linewidth]{volleyball-team.jpg}
+\caption{A volleyball team leadership network (Fransen et al., 2015)}
+\end{figure}
+
+\pause{} What processess govern the formation of social networks?
+
+
+\end{frame}
+
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Social networks}
+
+\begin{itemize}[<+->]
+\item Is it \textit{homophily}, \textit{social balance} (transitivity), \textit{popularity}?
+\item Exponential Family Random Graph Models, aka \alert{ERGMs}, can help us.
+\item In simple terms, ERGMs allow us to \textit{do}
+\begin{quote}
+statistical inference on what network patterns/structures/motifs govern social networks
+\end{quote}
+\end{itemize}
+
+\begin{figure}
+\includegraphics[width=.6\linewidth]{friendly-terms.pdf}
+\end{figure}
+
+\end{frame}
+
+% ------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Exponential Random Graph Models}
+
+Fairly complex models for studying networks \vspace{1cm}
+
+\begin{minipage}[c]{.55\linewidth}
+\begin{figure}
+\centering
+\includegraphics[width=.99\linewidth]{parts-of-ergm.pdf}
+\end{figure}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{.40\linewidth}
+\begin{figure}
+\includegraphics[width=.99\linewidth]{ergm-terms-paper.png}
+\end{figure}
+\end{minipage}
+
+\vspace{1cm} \pause{} We will be using a novel extension that focuses on small networks (\textbf{ERGMitos})
+
+\end{frame}
+
+% ------------------------------------------------------------------------------
+\begin{frame}[label=ergm-vs-ergmito]
+\frametitle{ERGMs for small networks}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=.5\linewidth]{parts-of-ergm.pdf}
+\end{figure}\pause{}
+
+Small means that we can calculate the normalizing constant exactly, and thus:\pause{}
+
+\begin{itemize}[<+->]
+\item Improved accuracy (bias),
+\item Smaller Type I Error rates,
+\item Faster estimation (about 20 times faster)
+\item A world of possibilities...
+\end{itemize}
+
+
+\vfill
+
+\uncover<6->{(Vega Yon, Salughter and de la Haye (2019))}
+
+\end{frame}
+
+% ------------------------------------------------------------------------------
+\begin{frame}[label=examples]
+
+Some results on the emergence of advice-seeking networks in small teams
+
+\vspace{.5cm}
+
+\begin{minipage}{.44\linewidth}
+\uncover<2->{
+\begin{enumerate}[<+->]
+\item Higher Social Perceptiveness \textit{means} more connections.
+\item The friend of my friend is my friend.
+\item Women ask for advice.
+\end{enumerate}
+}
+\end{minipage}
+\hfill
+\begin{minipage}{.55\linewidth}
+\begin{figure}
+\centering
+\includegraphics[width = .95\linewidth]{fig/plot-graph-4-1.pdf}
+\caption{Advice seeking networks observed in an experiment.}
+\end{figure}
+\end{minipage}
+\end{frame}
+
+\begin{frame}
+\frametitle{Concluding remarks}
+
+\begin{itemize}[<+->]
+\item The whole is not the sum of the parts
+\item Understanding local-macro dependencies is key.
+\item We can use ERGMitos to elucidate the processes that govern small networks.
+\item Insight into \textbf{team networks} is valuable for understanding team \textbf{process and performance}, and improving \textbf{team design}
+\end{itemize}
+
+\end{frame}
+
+
+% % ------------------------------------------------------------------------------
+% \section{Future research}
+% \begin{frame}[t]
+% \frametitle{Future Research}
+% 
+% {\bf Goodness-of-fit}\pause
+% \begin{itemize}
+% \item Is something that will need to be addressed at some point.\pause
+% \item The problem is not easy as we need to deal a discrete distribution.\pause
+% \item Two key questions: What sufficient statistic to look at? what test?
+% \end{itemize}
+% 
+% \pause {\bf ERGMs for large networks} \pause
+% \begin{itemize}
+% \item There is still no standard way to estimate ERGMs for large networks.\pause
+% \item Most attempts are still depending on simulation methods.\pause
+% \item We could use the Snowball Sampling framework together with ERGMitos.\pause{}
+% (... I would call this ERGMote)
+% \end{itemize}
+% 
+% \end{frame}
+
+
+
+% % ------------------------------------------------------------------------------
+\begin{frame}
+\maketitle
+\begin{center}
+\scalebox{2}{\textcolor{uscgold}{Thanks!}}
+\end{center}
+\end{frame}
+
+
+\end{document}
+

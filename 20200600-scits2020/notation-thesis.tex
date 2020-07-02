@@ -1,0 +1,104 @@
+% Mathematical functions
+% DELETED!
+\renewcommand{\Pr}[1]{{\mathbb{P}\left(#1\right) }}
+% DELETED!
+% DELETED!
+% DELETED!
+% DELETED!
+% DELETED!
+
+% DELETED!
+\newcommand{\sufstats}[1]{s\left(#1\right)}
+\renewcommand{\exp}[1]{\mbox{exp}\left\{#1\right\}}
+\newcommand{\transpose}[1]{{#1}^\mathbf{t}}
+
+% Objects
+% DELETED!
+% DELETED!
+\newcommand{\Graph}{\mathbf{G}}
+\newcommand{\graph}{\mathbf{g}}
+\newcommand{\GRAPH}{\mathcal{G}}
+\newcommand{\Adjmat}{Y}
+\newcommand{\adjmat}{y}
+\newcommand{\ADJMAT}{\mathcal{Y}}
+
+\newcommand{\INDEPVAR}{\mathcal{X}}
+\newcommand{\Indepvar}{X}
+\newcommand{\indepvar}{x}
+
+\newcommand{\normconst}{\kappa\left(\params, \Indepvar\right)}
+
+\graphicspath{{./figures/}{.}{./terms/}}
+
+
+%% NEED THIS FOR CANCY TEX
+\usepackage{pstricks}
+
+% Colors
+\definecolor{USCCardinal}{HTML}{990000} % 153 0 0 in RGB
+\definecolor{USCGold}{HTML}{FFCC00}
+\definecolor{USCGray}{HTML}{CCCCCC}
+
+% To use the function \sout
+\usepackage{ulem}
+\usepackage{tabularx, booktabs}
+
+% \bibliography{bibliography.bib}
+
+\def\ergmito{ERGM\textit{ito}}
+\def\ergmitos{\ergmito{}\textit{s}}
+% Mathematical functions
+\newcommand{\isone}[1]{{\boldsymbol{1}\left( #1 \right)}}
+\renewcommand{\Pr}[1]{{\mathbb{P}\left(#1\right) }}
+\newcommand{\f}[1]{{f\left(#1\right) }}
+\newcommand{\Prcond}[2]{{\mathbb{P}\left(#1\vphantom{#2}\;\right|\left.\vphantom{#1}#2\right)}}
+\newcommand{\fcond}[2]{{f\left(#1|#2\right) }}
+\newcommand{\Expected}[1]{{\mathbb{E}\left\{#1\right\}}}
+\newcommand{\ExpectedCond}[2]{{\mathbb{E}\left\{#1\vphantom{#2}\right|\left.\vphantom{#1}#2\right\}}}
+\renewcommand{\exp}[1]{\mbox{exp}\left\{#1\right\}}
+
+\newcommand{\Likelihood}[2]{\text{L}\left(#1 \left|\vphantom{#1}#2\right.\right)}
+
+% Mathematical Annotation -------------------------------
+% Modify this so that it matches the P01 convention overall
+
+% Tree
+\newcommand{\phylo}{\Lambda{}} % The actual tree
+\newcommand{\aphylo}{D{}}      % The annotated phylogenetic tree
+\newcommand{\aphyloObs}{\tilde \aphylo{}} % The observed annotated phylogenetic tree
+\newcommand{\parent}[1]{\mathbf{p}\left(#1\right)}
+\newcommand{\offspring}[1]{\mathbf{O}\left(#1\right)}
+\newcommand{\nodes}{\mathcal{N}{}}
+\newcommand{\edges}{\mathcal{E}{}}
+
+\newcommand{\class}[1]{C_{#1}{}}
+
+% Annotations
+\newcommand{\Ann}{\mathbf{X}{}} % Matrix of "real" annotations
+\newcommand{\ann}[1]{x_{#1}{}} % single element of "real" annotations
+\newcommand{\constraints}{\mathcal{C}{}} % Taxon constraints
+
+% Obs Annotations
+\newcommand{\AnnObs}{\mathbf{Z}{}}%{Z{}} \mathbf{X}^{obs}{}
+\newcommand{\annObs}[1]{z_{#1}{}}%{z{}}  x_{#1}^{obs
+
+% Pred. Annotations
+\newcommand{\AnnPred}{\hat X{}}
+\newcommand{\annPred}[1]{\hat x_{#1}}
+
+% Leaf nodes
+\newcommand{\Leaf}{L{}}
+
+% Shortest path
+\newcommand{\Geodesic}{\text{T}{}}
+\newcommand{\geodesic}{\tau{}}
+
+\newcommand{\Params}{\Omega{}}
+\newcommand{\params}{\omega{}}
+
+% Parameters
+\newcommand{\gain}{\mu_{01}{}}
+\newcommand{\loss}{\mu_{10}{}}
+\newcommand{\misszero}{\psi_{01}{}}
+\newcommand{\missone}{\psi_{10}{}}
+\newcommand{\proot}{\pi}

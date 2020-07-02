@@ -1,0 +1,87 @@
+%% Creator: Inkscape inkscape 0.92.3, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'Phylogenetic_tree-wiki.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{1377.76025391bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.54099352)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0.20614406,0.51061133){\color[rgb]{0.31372549,0.15686275,0.98039216}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{Bacteria}\end{tabular}}}}%
+    \put(0.35203301,0.4583526){\color[rgb]{0.31372549,0.15686275,0.98039216}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{Green}\\\textbf{Filamentous}\\\textbf{bacteria}\end{tabular}}}}%
+    \put(0.19307938,0.40936005){\color[rgb]{0.31372549,0.15686275,0.98039216}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{Spirochetes}\end{tabular}}}}%
+    \put(0.30195173,0.38105323){\color[rgb]{0.31372549,0.15686275,0.98039216}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{Gram}\\\textbf{positives}\end{tabular}}}}%
+    \put(0.16477256,0.33641557){\color[rgb]{0.31372549,0.15686275,0.98039216}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{Proteobacteria}\end{tabular}}}}%
+    \put(0.08965064,0.30484259){\color[rgb]{0.31372549,0.15686275,0.98039216}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{Cyanobacteria}\end{tabular}}}}%
+    \put(0.07876341,0.26238237){\color[rgb]{0.31372549,0.15686275,0.98039216}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{\textit{Planctomyces}}\end{tabular}}}}%
+    \put(0.07005362,0.21012364){\color[rgb]{0.31372549,0.15686275,0.98039216}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{\textit{Bacteroides}}\\\textbf{\textit{Cytophaga}}\end{tabular}}}}%
+    \put(0.07114234,0.14371151){\color[rgb]{0.31372549,0.15686275,0.98039216}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{\textit{Thermotoga}}\end{tabular}}}}%
+    \put(0.05372276,0.10016256){\color[rgb]{0.31372549,0.15686275,0.98039216}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{\textit{Aquifex}}\end{tabular}}}}%
+    \put(0.65034326,0.3516577){\color[rgb]{0.94117647,0.19607843,0.19607843}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{Halophiles}\end{tabular}}}}%
+    \put(0.52405133,0.37669834){\color[rgb]{0.94117647,0.19607843,0.19607843}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{\textit{Methanosarcina}}\end{tabular}}}}%
+    \put(0.46634898,0.3516577){\color[rgb]{0.94117647,0.19607843,0.19607843}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{\textit{Methanobacterium}}\end{tabular}}}}%
+    \put(0.46634898,0.32008472){\color[rgb]{0.94117647,0.19607843,0.19607843}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{\textit{Methanococcus}}\end{tabular}}}}%
+    \put(0.48376856,0.28851173){\color[rgb]{0.94117647,0.19607843,0.19607843}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{\textit{T. celer}}\end{tabular}}}}%
+    \put(0.42824366,0.26020492){\color[rgb]{0.94117647,0.19607843,0.19607843}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{\textit{Thermoproteus}}\end{tabular}}}}%
+    \put(0.4119128,0.23407556){\color[rgb]{0.94117647,0.19607843,0.19607843}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{\textit{Pyrodicticum}}\end{tabular}}}}%
+    \put(0.6568756,0.41371494){\color[rgb]{0.58823529,0.31372549,0.23529412}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{Entamoebae}\end{tabular}}}}%
+    \put(0.76030433,0.42351345){\color[rgb]{0.58823529,0.31372549,0.23529412}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{Slime}\\\textbf{molds}\end{tabular}}}}%
+    \put(0.84631349,0.41371494){\color[rgb]{0.58823529,0.31372549,0.23529412}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{Animals}\end{tabular}}}}%
+    \put(0.87901879,0.38976302){\color[rgb]{0.58823529,0.31372549,0.23529412}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{Fungi}\end{tabular}}}}%
+    \put(0.88179376,0.33641557){\color[rgb]{0.58823529,0.31372549,0.23529412}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{Plants}\end{tabular}}}}%
+    \put(0.88772645,0.30266514){\color[rgb]{0.58823529,0.31372549,0.23529412}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{Ciliates}\end{tabular}}}}%
+    \put(0.90301749,0.2547613){\color[rgb]{0.58823529,0.31372549,0.23529412}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{Flagellates}\end{tabular}}}}%
+    \put(0.92034669,0.20794619){\color[rgb]{0.58823529,0.31372549,0.23529412}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{Trichomonads}\end{tabular}}}}%
+    \put(0.91666268,0.1665747){\color[rgb]{0.58823529,0.31372549,0.23529412}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{Microsporidia}\end{tabular}}}}%
+    \put(0.91445227,0.11758214){\color[rgb]{0.58823529,0.31372549,0.23529412}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{Diplomonads}\end{tabular}}}}%
+    \put(0.51643026,0.51061133){\color[rgb]{0.94117647,0.19607843,0.19607843}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{Archaea}\end{tabular}}}}%
+    \put(0.79296604,0.51061133){\color[rgb]{0.58823529,0.31372549,0.23529412}\makebox(0,0)[t]{\lineheight{0}\smash{\begin{tabular}[t]{c}\textbf{Eukaryota}\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{Phylogenetic_tree-wiki.pdf}}%
+  \end{picture}%
+\endgroup%

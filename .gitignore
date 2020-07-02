@@ -18,6 +18,9 @@
 *.ppt
 *.pptx
 
+*.mp4
+*.kdenlive
+
 # C++ binaries
 *.o
 
