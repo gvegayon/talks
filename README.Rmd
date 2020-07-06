@@ -1,0 +1,68 @@
+---
+output: github_document
+---
+
+# List of talks and presentations
+
+A continuous work in progress, the last time I updated the repo was ![GitHub last commit](https://img.shields.io/github/last-commit/gvegayon/talks)
+
+```{r aux, echo=FALSE}
+#' Function to read yaml header in markdown documents.
+yaml_header <- function(fn) {
+  x   <- readLines(fn, warn = FALSE)
+  idx <- which(grepl("^---\\s?$", x, perl = TRUE))#[1:2]
+  if (length(idx) < 2)
+    return(list())
+  idx <- idx[1:2]
+  
+  x   <- x[(idx[1]+1):(idx[2]-1)]
+  
+  ans <- structure(
+    gsub("^[a-zA-Z0-9_ ]+[:]", "", x),
+    names = gsub("[:].*", "", x)
+  )
+  
+  ans[ans==""] <- NA_character_
+  as.list(ans)
+}
+# yaml_header("20160919-reproducible-research/README.md")
+
+```
+
+
+```{r table, echo=FALSE}
+readmes <- list.files(recursive = TRUE, full.names = TRUE, pattern = "README[.]md")
+
+readmes <- readmes[grepl("[.]/.+/", readmes)]
+paths   <- gsub("^[.]/|README[.]md$", "", readmes)
+details <- lapply(readmes, yaml_header)
+
+# Which have contents?
+idx <- sapply(details, length) > 0
+paths <- paths[idx]
+details <- details[idx]
+
+vids <- sapply(details, "[[", "video")
+
+
+# Building the table
+tab <- data.frame(
+  Title = sprintf(
+    "<a href=\"%s/README.md\" target=\"_blank\" style=\"font-weight:bold;\">%s</a>",
+    paths,
+    sapply(details, "[[", "title")
+    ),
+  Date  = sapply(details, "[[", "date"),
+  See   = paste(
+    sprintf("<a href =\"%s\" target=\"_blank\">Slides</a>", sapply(details, "[[", "slides")),
+    ifelse(
+      !is.na(vids),
+      sprintf("<a href =\"%s\" target=\"_blank\">Video</a>", vids),
+      ""
+      )
+  )
+)
+tab$Date <- as.Date(tab$Date)
+knitr::kable(tab[order(tab$Date, decreasing = TRUE),], row.names = FALSE)
+```
+
