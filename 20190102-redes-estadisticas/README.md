@@ -1,13 +1,13 @@
 ---
-repo:https://github.com/gvegayon/redes-estadisticas2018
-title:Estadística de Redes y Econometria Espacial (con R)
-date:2018-12-20
-place:Santiago, Chile
-institute:Instituto Milenio Fundamento de los datos
-occasion:
-video:https://www.facebook.com/Fundamentosdelosdatos/videos/281299225908470/
-announcement:https://imfd.cl/agenda_evento/escuela-de-analisis-de-datos-en-r-tutorial-1-george-vega-yon/
-slides:https://github.com/gvegayon/redes-estadisticas2018
+repo: https://github.com/gvegayon/redes-estadisticas2018
+title: Estadística de Redes y Econometria Espacial (con R)
+date: 2018-12-20
+location: Santiago, Chile
+host: Instituto Milenio Fundamento de los datos
+event:
+video: https://www.facebook.com/Fundamentosdelosdatos/videos/281299225908470/
+announcement: https://imfd.cl/agenda_evento/escuela-de-analisis-de-datos-en-r-tutorial-1-george-vega-yon/
+slides: https://github.com/gvegayon/redes-estadisticas2018
 ---
 
 This was my first time talking about Statistical models for network analysis and spatial econometrics in my native language (spanish).

@@ -1,13 +1,13 @@
 ---
-repo:https://github.com/gvegayon/laerug-hpc-w-r-nov2018
-title:A brief introduction to using R for high-performance computing
-date:2018-11-12
-place:Los Angeles, CA
-institute:USC
-occasion:East LA R User Group
+repo: https://github.com/gvegayon/laerug-hpc-w-r-nov2018
+title: A brief introduction to using R for high-performance computing
+date: 2018-11-12
+location: Los Angeles, CA
+host: USC
+event: East LA R User Group
 video:
 announcement:
-slides:https://gvegayon.github.io/laerug-hpc-w-r-nov2018/
+slides: https://gvegayon.github.io/laerug-hpc-w-r-nov2018/
 ---
 
 # A brief introduction to using R for high-performance computing

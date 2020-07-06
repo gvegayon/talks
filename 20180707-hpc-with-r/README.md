@@ -1,13 +1,13 @@
 ---
-repo:https://github.com/USCbiostats/hpc-with-r/
-title:Reproducible Research
-date:2018-07-07
-place:Los Angeles, CA
-institute:USC
-occasion:USC's HPCC workshop
+repo: https://github.com/USCbiostats/hpc-with-r/
+title: Reproducible Research
+date: 2018-07-07
+location: Los Angeles, CA
+host: USC
+event: USC's HPCC workshop
 video:
 announcement:
-slides:https://uscbiostats.github.io/hpc-with-r/
+slides: https://uscbiostats.github.io/hpc-with-r/
 ---
 
 # Introduction to R (for HPC users) [![DOI](https://zenodo.org/badge/142945922.svg)](https://zenodo.org/badge/latestdoi/142945922)

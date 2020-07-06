@@ -18,7 +18,7 @@ yaml_header <- function(fn) {
   x   <- x[(idx[1]+1):(idx[2]-1)]
   
   ans <- structure(
-    gsub("^[a-zA-Z0-9_ ]+[:]", "", x),
+    gsub("^[a-zA-Z0-9_ ]+[:]\\s*", "", x),
     names = gsub("[:].*", "", x)
   )
   
@@ -48,7 +48,7 @@ vids <- sapply(details, "[[", "video")
 # Building the table
 tab <- data.frame(
   Title = sprintf(
-    "<a href=\"%s/README.md\" target=\"_blank\" style=\"font-weight:bold;\">%s</a>",
+    "<a href=\"%sREADME.md\" target=\"_blank\" style=\"font-weight:bold;\">%s</a>",
     paths,
     sapply(details, "[[", "title")
     ),
