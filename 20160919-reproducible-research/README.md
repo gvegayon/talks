@@ -9,6 +9,7 @@ event_url:
 video:
 announcement:
 slides: https://gvegayon.github.io/reproducible_research/
+type: talk
 ---
 
 Talk given during HBR (Helth Behavior Research) students seminar series.

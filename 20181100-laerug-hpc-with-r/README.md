@@ -8,6 +8,7 @@ event: East LA R User Group
 video:
 announcement:
 slides: https://gvegayon.github.io/laerug-hpc-w-r-nov2018/
+type: talk
 ---
 
 # A brief introduction to using R for high-performance computing

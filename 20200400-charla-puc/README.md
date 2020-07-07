@@ -1,3 +1,17 @@
+---
+date: 2020-04-15
+title: "Predicción de funciones genéticas utilizando evidencia experimental y árboles filogenéticos: Un modelo evolutivo" o "Ciencia de datos en la práctica"
+event: Seminario de Ingeniería Matemática y Computacional
+host: PUC
+event_url: 
+location: Zoom
+slides: https://github.com/gvegayon/charla-puc-abril2020/blob/master/slides.pdf
+repo: https://github.com/gvegayon/charla-puc-abril2020
+type: talk
+video:
+announcement: http://mat.puc.cl/seminarios?lang=en
+---
+
 # Titulo
 
 "Predicción de funciones genéticas utilizando evidencia experimental y

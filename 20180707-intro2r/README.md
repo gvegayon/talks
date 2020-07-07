@@ -8,6 +8,7 @@ event: USC's HPCC workshop
 video:
 announcement:
 slides: https://gvegayon.github.io/intro2r
+type: workshop
 ---
 
 This presentation was for users of USC's HPC Cluster. The slides has two parts:

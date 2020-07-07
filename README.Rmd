@@ -44,7 +44,6 @@ details <- details[idx]
 
 vids <- sapply(details, "[[", "video")
 
-
 # Building the table
 tab <- data.frame(
   Title = sprintf(
@@ -60,7 +59,8 @@ tab <- data.frame(
       sprintf("<a href =\"%s\" target=\"_blank\">Video</a>", vids),
       ""
       )
-  )
+  ),
+  Type = sapply(details, "[[", "type")
 )
 tab$Date <- as.Date(tab$Date)
 knitr::kable(tab[order(tab$Date, decreasing = TRUE),], row.names = FALSE)
