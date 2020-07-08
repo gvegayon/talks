@@ -8,7 +8,7 @@ event: SciTS 2020
 event_url: https://sts.memberclicks.net/scits-2020-home-base
 video: https://youtu.be/Dg32SnyOO7s
 announcement: 
-slides: slides.pdf
+slides: https://github.com/gvegayon/talks/raw/master/20200600-scits2020/slides.pdf
 type: talk
 ---
 

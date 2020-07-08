@@ -31,6 +31,10 @@ yaml_header <- function(fn) {
 
 
 ```{r table, echo=FALSE}
+
+# Icons
+video_i <- '<img width="20px" alt="Video camera icon" src="Video_camera_icon.svg">'
+
 readmes <- list.files(recursive = TRUE, full.names = TRUE, pattern = "README[.]md")
 
 readmes <- readmes[grepl("[.]/.+/", readmes)]
@@ -56,7 +60,7 @@ tab <- data.frame(
     sprintf("<a href =\"%s\" target=\"_blank\">Slides</a>", sapply(details, "[[", "slides")),
     ifelse(
       !is.na(vids),
-      sprintf("<a href =\"%s\" target=\"_blank\">Video</a>", vids),
+      sprintf("<a href =\"%s\" target=\"_blank\">%s</a>", vids, video_i),
       ""
       )
   ),
