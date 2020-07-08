@@ -1,3 +1,17 @@
+---
+repo: https://github.com/gvegayon/research-pipelines
+title: Happy Scientist Seminar: Research Pipelines
+date: 2019-10-24
+location: Los Angeles, CA
+host: USC
+event: Happy Scientist Seminar
+event_url:
+video:
+announcement:
+slides: https://gvegayon.github.io/research-pipelines
+type: talk
+---
+
 # Happy Scientist Seminar: Research Pipelines
 
 ## About the talk

@@ -60,7 +60,8 @@ tab <- data.frame(
       ""
       )
   ),
-  Type = sapply(details, "[[", "type")
+  Type = sapply(details, "[[", "type"),
+  stringsAsFactors = FALSE
 )
 tab$Date <- as.Date(tab$Date)
 knitr::kable(tab[order(tab$Date, decreasing = TRUE),], row.names = FALSE)
