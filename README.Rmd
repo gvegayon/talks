@@ -2,9 +2,10 @@
 output: github_document
 ---
 
-# List of talks and presentations
+# List of talks and presentations ![GitHub last commit](https://img.shields.io/github/last-commit/gvegayon/talks)
 
-A continuous work in progress, the last time I updated the repo was ![GitHub last commit](https://img.shields.io/github/last-commit/gvegayon/talks)
+A continuous work in progress, you can find more information about my work
+[here](https://ggvy.cl).
 
 ```{r aux, echo=FALSE}
 #' Function to read yaml header in markdown documents.
