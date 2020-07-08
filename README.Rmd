@@ -69,6 +69,7 @@ tab <- data.frame(
   stringsAsFactors = FALSE
 )
 tab$Date <- as.Date(tab$Date)
-knitr::kable(tab[order(tab$Date, decreasing = TRUE),], row.names = FALSE)
+tab$Title <- paste0(tab$Title, " (", format(tab$Date, format = "%B %e, %Y"), ")")
+knitr::kable(tab[order(tab$Date, decreasing = TRUE),-2], row.names = FALSE)
 ```
 
