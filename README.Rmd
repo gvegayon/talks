@@ -34,7 +34,9 @@ yaml_header <- function(fn) {
 ```{r table, echo=FALSE}
 
 # Icons
-video_i <- '<img width="20px" alt="Video camera icon" src="Video_camera_icon.svg">'
+slides_icon <- '<img width="20px" style="filter: brightness(0);" alt="Slides icon" src="https://upload.wikimedia.org/wikipedia/commons/f/f5/PowerPoint_Presentation_Flat_Icon.svg">'
+video_icon <- '<img width="20px" alt="Video camera icon" src="https://upload.wikimedia.org/wikipedia/commons/8/82/Font_Awesome_5_regular_video.svg">'
+repo_icon <- '<img width="20px" alt="Octocat icon" src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg">'
 
 readmes <- list.files(recursive = TRUE, full.names = TRUE, pattern = "README[.]md")
 
@@ -48,6 +50,7 @@ paths <- paths[idx]
 details <- details[idx]
 
 vids <- sapply(details, "[[", "video")
+repos <- sapply(details, "[[", "repo")
 
 # Building the table
 tab <- data.frame(
@@ -58,18 +61,25 @@ tab <- data.frame(
     ),
   Date  = sapply(details, "[[", "date"),
   See   = paste(
-    sprintf("<a href =\"%s\" target=\"_blank\">Slides</a>", sapply(details, "[[", "slides")),
+    sprintf("<a href =\"%s\" target=\"_blank\">%s</a>", sapply(details, "[[", "slides"), slides_icon),
     ifelse(
       !is.na(vids),
-      sprintf("<a href =\"%s\" target=\"_blank\">%s</a>", vids, video_i),
+      sprintf("<a href =\"%s\" target=\"_blank\">%s</a>", vids, video_icon),
       ""
-      )
+      ),
+    ifelse(
+      !is.na(repos),
+      sprintf("<a href=\"%s\" target=\"_blank\">%s</a>", repos, repo_icon),
+      ""
+    )
   ),
   Type = sapply(details, "[[", "type"),
   stringsAsFactors = FALSE
 )
 tab$Date <- as.Date(tab$Date)
-tab$Title <- paste0(tab$Title, " (", format(tab$Date, format = "%B %e, %Y"), ")")
-knitr::kable(tab[order(tab$Date, decreasing = TRUE),-2], row.names = FALSE)
+tab$Title <- paste0(tab$Title, " (", format(tab$Date, format = "%B %e, %Y"), ") ", tab$See)
+knitr::kable(tab[order(tab$Date, decreasing = TRUE),-c(2, 3)], row.names = FALSE)
 ```
+
+
 
