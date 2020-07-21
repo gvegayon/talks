@@ -82,7 +82,11 @@ tab$Date <- as.Date(tab$Date)
 tab$Title <- paste0(
   tab$Title, " (", format(tab$Date, format = "%B %e, %Y"),
   ") ",
-  ifelse(!is.na(event), sprintf("<em>%s</em> ", event), ""),
+  ifelse(
+    !is.na(event),
+    sprintf("<em>%s</em> ", event),
+    ""
+    ),
   tab$See)
 ```
 
