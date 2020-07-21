@@ -5,7 +5,7 @@ event: Doctoral Defense
 host: USC
 event_url: 
 location: Zoom
-slides: https://github.com/gvegayon/defense/raw/master/slides.pdf
+slides: https://github.com/gvegayon/defense/raw/master/slides-handout.pdf
 repo: https://github.com/gvegayon/defense
 type: talk
 video:

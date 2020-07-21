@@ -52,17 +52,18 @@ details <- details[idx]
 vids   <- sapply(details, "[[", "video")
 repos  <- sapply(details, "[[", "repo")
 event  <- sapply(details, "[[", "event")
+slides <- sapply(details, "[[", "slides")
 
 # Building the table
 tab <- data.frame(
   Title = sprintf(
     "<a href=\"%s\" target=\"_blank\" ><strong>%s</strong></a>",
-    ifelse(is.na(repos), paths, repos),
+    slides,
     sapply(details, "[[", "title")
     ),
   Date  = sapply(details, "[[", "date"),
   See   = paste(
-    sprintf("<a href =\"%s\" target=\"_blank\">%s</a>", sapply(details, "[[", "slides"), slides_icon),
+    # sprintf("<a href =\"%s\" target=\"_blank\">%s</a>", slides, slides_icon),
     ifelse(
       !is.na(vids),
       sprintf("<a href =\"%s\" target=\"_blank\">%s</a>", vids, video_icon),
