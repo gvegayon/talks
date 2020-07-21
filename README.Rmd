@@ -109,5 +109,33 @@ for (i in names(tab)) {
 
 ```
 
+```{r list-bib, echo=FALSE}
+tmp <- tempfile()
+allnocite <- NULL
+for (i in 1:length(details)) {
+  allnocite <- c(allnocite, details[[i]]$date)
+  cat("\n@inproceedings{talk", details[[i]]$date,",\n\t" , sep="", file=tmp, append = TRUE)
+  lines <- with(details[[i]], c(
+    title      = title,
+    author     = "{\\bf Vega Yon}, {\\bf George}",
+    year       = gsub("-.+", "",date),
+    month      = as.integer(gsub("^[0-9]+-([0-9]+)-.+", "\\1",date)),
+    eventtitle = paste0("presented at {", event, "}"),
+    note       = sprintf("(%s, \\href{%s}{slides})", type, slides)#,
+    # url        = sprintf("\\href{%}{(%s)}")
+  ))
+  
+  lines <- paste(sprintf("%s={%s}", names(lines), lines), collapse = ",\n\t")
+  cat(lines, "\n}\n", file=tmp, append = TRUE)
+}
+
+cat(
+  "%\\nocite{", paste0("talk", allnocite, collapse=","), "}\n", file = tmp,
+  append = TRUE)
+file.rename(tmp, "presentations.bib")
+
+# cat(readLines(tmp), sep="\n")
+```
+
 
 
