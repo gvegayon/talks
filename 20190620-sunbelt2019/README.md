@@ -9,7 +9,8 @@ event_url: https://www.fourwav.es/view/717/info/
 video:
 announcement:
 slides: https://github.com/gvegayon/sunbelt2019/blob/master/index-handout.pdf
-type: talk
+type: conference talk
+costar: Andrew Slaughter and Kayla de la Haye
 ---
 
 Joint work with Andrew Slaughter and Kayla de la Haye.

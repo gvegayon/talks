@@ -109,30 +109,56 @@ for (i in names(tab)) {
 
 ```
 
-```{r list-bib, echo=FALSE}
-tmp <- tempfile()
-allnocite <- NULL
-for (i in 1:length(details)) {
-  allnocite <- c(allnocite, details[[i]]$date)
-  cat("\n@inproceedings{talk", details[[i]]$date,",\n\t" , sep="", file=tmp, append = TRUE)
-  lines <- with(details[[i]], c(
-    title      = title,
-    author     = "{\\bf Vega Yon}, {\\bf George}",
-    year       = gsub("-.+", "",date),
-    month      = as.integer(gsub("^[0-9]+-([0-9]+)-.+", "\\1",date)),
-    eventtitle = paste0("presented at {", event, "}"),
-    note       = sprintf("(%s, \\href{%s}{slides})", type, slides)#,
-    # url        = sprintf("\\href{%}{(%s)}")
-  ))
-  
-  lines <- paste(sprintf("%s={%s}", names(lines), lines), collapse = ",\n\t")
-  cat(lines, "\n}\n", file=tmp, append = TRUE)
-}
+```{r list-bib, echo=FALSE, results='hide'}
+types <- list(
+  conference = which(grepl("conf", sapply(details, "[[","type"))),
+  invited    = which(grepl("invi", sapply(details, "[[","type"))),
+  other      = which(!grepl("invi|conf", sapply(details, "[[","type")))
+)
 
-cat(
-  "%\\nocite{", paste0("talk", allnocite, collapse=","), "}\n", file = tmp,
-  append = TRUE)
-file.rename(tmp, "presentations.bib")
+keywords <- c(
+  conference = "conferencetalk",
+  invited    = "invitedtalk",
+  other      = "othertalk"
+)
+
+costars <- sapply(details, "[[", "costar")
+costars <- sapply(costars, function(i) if (is.null(i)) NA else i)
+
+for (ttype in names(types)) {
+  tmp <- tempfile()
+  allnocite <- NULL
+  counter <- 0L
+  for (i in types[[ttype]]) {
+    allnocite <- c(allnocite, details[[i]]$date)
+    cat(
+      "\n@inproceedings{talk-", (counter <- counter + 1), "-", ttype,
+      ",\n\t" , sep="", file=tmp, append = TRUE
+      )
+    lines <- with(details[[i]], c(
+      title      = title,
+      author     = if (ttype == "conference") {
+        paste("{\\bf Vega Yon}, {\\bf George}", ifelse(is.na(costars[i]), "", paste("and", costars[i])))
+        } else "",
+      year       = gsub("-.+", "",date),
+      month      = as.integer(gsub("^[0-9]+-([0-9]+)-.+", "\\1",date)),
+      eventtitle = paste0("{", event, "}"),
+      note       = sprintf(
+        "(%s, \\href{%s}{slides}%s)", type, slides,
+        ifelse(!is.na(video), sprintf("/\\href{%s}{video}", video), "")
+        ),
+      keywords   = unname(keywords[ttype])
+    ))
+    
+    lines <- paste(sprintf("%s={%s}", names(lines), lines), collapse = ",\n\t")
+    cat(lines, "\n}\n", file=tmp, append = TRUE)
+  }
+  
+  cat(
+    "%\\nocite{", paste0("talk", allnocite, collapse=","), "}\n", file = tmp,
+    append = TRUE)
+  file.rename(tmp, sprintf("presentations-%s.bib", ttype))
+}
 
 # cat(readLines(tmp), sep="\n")
 ```

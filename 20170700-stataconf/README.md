@@ -9,7 +9,8 @@ event_url: https://www.stata.com/meeting/baltimore17/
 video:
 announcement:
 slides: https://github.com/gvegayon/parallel/raw/master/talks/20170727_stata_conference/20170727_stata_conference.pdf
-type: talk
+type: conference talk
+costar: Brian Quistorff
 ---
 
 Presented by my co-author [Brian Quistorff](https://sites.google.com/site/bquistorff/).

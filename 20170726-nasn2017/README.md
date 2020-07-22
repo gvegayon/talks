@@ -9,7 +9,8 @@ event_url: http://nasn2017.insna.org/
 video:
 announcement:
 slides: https://usccana.github.io/netdiffuser-nasn2017/
-type: workshop
+type: conference workshop
+costar: Thomas W. Valente
 ---
 
 Joint work with Tom Valente

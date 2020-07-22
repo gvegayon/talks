@@ -9,7 +9,8 @@ event_url: https://2019.ic2s2.org/
 video:
 announcement:
 slides: https://github.com/gvegayon/ic2s22019/raw/master/index.pdf
-type: talk
+type: conference talk
+costar: Andrew Slaughter and Kayla de la Haye
 ---
 
 Joint work with Andrew Slaughter and Kayla de la Haye.

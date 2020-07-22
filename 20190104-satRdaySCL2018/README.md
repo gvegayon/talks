@@ -5,10 +5,10 @@ event: satRday Santiago 2018
 event_url: https://santiago2018.satrdays.org/
 location: Santiago, Chile
 repo: https://github.com/gvegayon/satRdaySCL2018
-slides:
+slides: https://github.com/gvegayon/satRdaySCL2018
 video:
 announcement:
-type: workshop
+type: conference workshop
 ---
 
 This was my first time talking about HPC with R in my native language (spanish).

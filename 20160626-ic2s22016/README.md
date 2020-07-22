@@ -9,7 +9,8 @@ event_url: https://www.kellogg.northwestern.edu/news-events/conference/ic2s2/201
 video:
 announcement:
 slides: https://github.com/USCCANA/netdiffuser-ic2s22016/raw/master/netdiffuseR_ic2s22016.pdf
-type: poster
+type: conference poster
+costar: Thomas W. Valente
 ---
 
 Joint work with Tom Valente, Stephanie Pitts, and Tim Hayes

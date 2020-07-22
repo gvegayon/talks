@@ -9,6 +9,7 @@ slides: https://cdn.rawgit.com/USCbiostats/rbootcamp/master/day2/presentation.ht
 repo: https://github.com/USCbiostats/rbootcamp/tree/fall2018
 type: workshop
 video:
+costar: Malcolm Barrett
 ---
 
 This 5-day bootcamp was held at USC's Department of Preventive medicine jointly with [Malcolm Barrett](https://malco.io).

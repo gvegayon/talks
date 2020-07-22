@@ -9,7 +9,8 @@ event_url: http://nasn2018.insna.org/
 video:
 announcement:
 slides: https://github.com/muriteams/nasn2018/blob/nasn2018/index.pdf
-type: talk
+type: conference talk
+costar: Kayla de la Haye
 ---
 
 Joint work with Kayla de la Haye.

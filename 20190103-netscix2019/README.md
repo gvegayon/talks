@@ -8,8 +8,9 @@ event: NetSciX 2019, SCL
 event_url:
 video:
 announcement:
-slides: https://github.com/muriteams/nasn2018/blob/netscix2019/index.pdf
-type: talk
+slides: https://github.com/muriteams/nasn2018/raw/netscix2019/index.pdf
+type: conference talk
+costar: Kayla de la Haye
 ---
 
 Joint work with Kayla de la Haye.

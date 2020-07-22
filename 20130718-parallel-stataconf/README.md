@@ -9,6 +9,6 @@ event_url: https://www.stata.com/meeting/new-orleans13/
 video: 
 announcement: 
 slides: https://github.com/gvegayon/talks/raw/master/20130718-parallel-stataconf/vega.pdf
-type: talk
+type: conference talk
 ---
 

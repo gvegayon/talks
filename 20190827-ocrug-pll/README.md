@@ -4,12 +4,12 @@ title: A Brief Introduction to Using R for High-Performance Computing
 date: 2019-08-27
 location: Irvine, CA
 host: Orange County R Users Group
-event: 
+event: Orange County R Users Group
 event_url: 
 video: https://youtu.be/gLmEBINxbFE
 announcement: https://ocrug.org/blog/2019/08/27/2019-08-27-advanced-regressions-and-high-performance-computing/
 slides: https://gvegayon.github.io/ocrug-hpc-august2019
-type: talk
+type: invited talk
 ---
 
 Materials of OCRUG meetup on August 27, 2019
