@@ -8,6 +8,6 @@ location: Zoom
 slides: https://ggv.cl/slides/nygc
 repo: https://github.com/gvegayon/ny-genome-talk
 type: invited talk
-video: 
+video: https://youtu.be/LEHu_ciVb5A
 ---
 
