@@ -1,5 +1,7 @@
 ---
-output: github_document
+output:
+  github_document:
+    html_preview: false
 ---
 
 # List of talks and presentations ![GitHub last commit](https://img.shields.io/github/last-commit/gvegayon/talks)
