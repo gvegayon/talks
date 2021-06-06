@@ -10,7 +10,7 @@ video:
 announcement:
 slides: https://github.com/USCCANA/netdiffuser-ic2s22016/raw/master/netdiffuseR_ic2s22016.pdf
 type: conference poster
-costar: {\\bf George G.} {\\bf Vega Yon} and Thomas W. Valente
+costar: {\bf George G.} {\bf Vega Yon} and Thomas W. Valente
 ---
 
 Joint work with Tom Valente, Stephanie Pitts, and Tim Hayes

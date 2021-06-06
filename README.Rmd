@@ -144,7 +144,7 @@ for (ttype in names(types)) {
         } else "",
       year       = gsub("-.+", "",date),
       month      = as.integer(gsub("^[0-9]+-([0-9]+)-.+", "\\1",date)),
-      eventtitle = paste0("{", event, "}"),
+      eventtitle = if (is.na(event)) NULL else paste0("{", event, "}"),
       note       = sprintf(
         "(%s%s%s%s%s)", type,
 	ifelse(!is.na(slides) | !is.na(video), ", ", ""),

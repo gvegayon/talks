@@ -10,7 +10,7 @@ video:
 announcement:
 slides: https://github.com/gvegayon/ic2s22019/raw/master/index.pdf
 type: conference talk
-costar: {\\bf George G.} {\\bf Vega Yon} and Andrew Slaughter and Kayla de la Haye
+costar: {\bf George G.} {\bf Vega Yon} and Andrew Slaughter and Kayla de la Haye
 ---
 
 Joint work with Andrew Slaughter and Kayla de la Haye.

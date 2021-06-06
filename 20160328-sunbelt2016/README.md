@@ -10,6 +10,6 @@ video: https://www.youtube.com/playlist?list=PLT-GgRN1lFI4coHDqkRJm3flDw9e1gg2P
 announcement: 
 slides: https://github.com/USCCANA/netdiffuser-sunbelt2016
 type: conference workshop
-costar: {\\bf George G.} {\\bf Vega Yon} and Thomas W. Valente
+costar: {\bf George G.} {\bf Vega Yon} and Thomas W. Valente
 ---
 

@@ -9,6 +9,6 @@ slides:
 repo:
 type: conference talk
 video:
-costar: Marie Ouellet and Sadaf Hashimi and {\\bf George G.} {\\bf Vega Yon}
+costar: Marie Ouellet and Sadaf Hashimi and {\bf George G.} {\bf Vega Yon}
 ---
 

@@ -10,7 +10,7 @@ video:
 announcement:
 slides: https://usccana.github.io/netdiffuser-nasn2017/
 type: conference workshop
-costar: {\\bf George G.} {\\bf Vega Yon} and Thomas W. Valente
+costar: {\bf George G.} {\bf Vega Yon} and Thomas W. Valente
 ---
 
 Joint work with Tom Valente
