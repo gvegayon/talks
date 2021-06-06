@@ -6,7 +6,7 @@ event_url:
 location: Irvine, CA
 host: University of California Irvine
 slides: https://github.com/gvegayon/nu2019/raw/uci2019/talk/ggvy-uci2019-talk-handout.pdf
-repo: https://github.com/gvegayon/nu2019/blob/uci2019
+repo: https://github.com/gvegayon/nu2019/tree/uci2019
 video:
 announcement:
 type: invited talk
