@@ -10,7 +10,7 @@ video: https://channel9.msdn.com/Events/useR-international-R-User-conference/use
 announcement: 
 slides: https://github.com/gvegayon/netdiffuser-user2016/raw/master/netdiffuseR_useR2016.pdf
 type: conference talk
-costar: Thomas W. Valente
+costar: {\\bf George G.} {\\bf Vega Yon} and Thomas W. Valente
 ---
 
 An alternative take is [here](https://youtu.be/IK-SSk6vh6g)

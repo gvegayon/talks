@@ -10,7 +10,7 @@ video:
 announcement:
 slides: https://github.com/gvegayon/sunbelt2019/blob/master/index-handout.pdf
 type: conference talk
-costar: Andrew Slaughter and Kayla de la Haye
+costar: {\\bf George G.} {\\bf Vega Yon} and Andrew Slaughter and Kayla de la Haye
 ---
 
 Joint work with Andrew Slaughter and Kayla de la Haye.

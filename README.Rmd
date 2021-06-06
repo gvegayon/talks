@@ -140,14 +140,17 @@ for (ttype in names(types)) {
     lines <- with(details[[i]], c(
       title      = title,
       author     = if (ttype == "conference") {
-        paste("{\\bf Vega Yon}, {\\bf George}", ifelse(is.na(costars[i]), "", paste("and", costars[i])))
+        ifelse(is.na(costars[i]), "{\\bf Vega Yon}, {\\bf George}", costars[i])
         } else "",
       year       = gsub("-.+", "",date),
       month      = as.integer(gsub("^[0-9]+-([0-9]+)-.+", "\\1",date)),
       eventtitle = paste0("{", event, "}"),
       note       = sprintf(
-        "(%s, \\href{%s}{slides}%s)", type, slides,
-        ifelse(!is.na(video), sprintf("/\\href{%s}{video}", video), "")
+        "(%s%s%s%s%s)", type,
+	ifelse(!is.na(slides) | !is.na(video), ", ", ""),
+	ifelse(!is.na(slides), sprintf("\\href{%s}{slides}", slides), ""),
+	ifelse(!is.na(slides) & !is.na(video), "/", ""),
+        ifelse(!is.na(video), sprintf("\\href{%s}{video}", video), "")
         ),
       keywords   = unname(keywords[ttype])
     ))

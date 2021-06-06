@@ -10,7 +10,7 @@ repo: https://github.com/gvegayon/nu2019/tree/uci2019
 video:
 announcement: https://maillists.uci.edu/pipermail/snrlist-announce/2019-April/000329.html
 type: invited talk
-costar: Kayla de la Haye
+costar: {\\bf George G.} {\\bf Vega Yon} and Kayla de la Haye
 ---
 
 An invitation from Prof. Carter Butts. This is joint work with <a href=\"https://www.kayladelahaye.net/\" target=\"_blank\">Prof. Kayla de la Haye (USC)</a>.

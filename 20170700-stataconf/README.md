@@ -10,7 +10,7 @@ video:
 announcement:
 slides: https://github.com/gvegayon/parallel/raw/master/talks/20170727_stata_conference/20170727_stata_conference.pdf
 type: conference talk
-costar: Brian Quistorff
+costar: {\\bf George G.} {\\bf Vega Yon} and Brian Quistorff
 ---
 
 Presented by my co-author [Brian Quistorff](https://sites.google.com/site/bquistorff/).

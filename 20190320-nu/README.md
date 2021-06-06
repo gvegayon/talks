@@ -10,7 +10,7 @@ repo: https://github.com/gvegayon/nu2019/tree/nu03-2019
 video: https://youtu.be/0eTqv5cxTwU
 announcement:http://sonic.northwestern.edu/sonic-speaker-series-presents-george-g-vega-yon/
 type: invited talk
-costar: Kayla de la Haye
+costar: {\\bf George G.} {\\bf Vega Yon} and Kayla de la Haye
 ---
 
 As an invitation from Prof. Noshir Contractor, I gave this talk at Northwestern University's <a href="https://sonic.northwestern.edu" target="_blank">SONIC Lab</a> followed by a workshop on the tools that we have been developing for implemting the methods described in it. The lab was kind enough to record my talk as well as advertise it <a href="http://sonic.northwestern.edu/sonic-speaker-series-presents-george-g-vega-yon/" target="_blank">here</a>.

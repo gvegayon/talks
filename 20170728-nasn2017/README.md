@@ -10,7 +10,7 @@ video:
 announcement:
 slides: https://github.com/gvegayon/talks/raw/master/20170728-nasn2017/sns_nasn2017.pdf
 type: conference talk
-costar: Kayla de la Haye and Hee-sung Shin and Thomas Valente
+costar: {\\bf George G.} {\\bf Vega Yon} and Kayla de la Haye and Hee-sung Shin and Thomas Valente
 ---
 
 Joint work with Kayla de la Haye, Hee-sung Shin, and Thomas Valente.

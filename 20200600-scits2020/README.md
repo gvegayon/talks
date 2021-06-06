@@ -10,6 +10,6 @@ video: https://youtu.be/Dg32SnyOO7s
 announcement: 
 slides: https://github.com/gvegayon/talks/raw/master/20200600-scits2020/slides.pdf
 type: conference talk
-costar: Aileen Dinkjian and Sarah Hamm-Alvarez and Kayla de la Haye
+costar: {\\bf George G.} {\\bf Vega Yon} and Aileen Dinkjian and Sarah Hamm-Alvarez and Kayla de la Haye
 ---
 
