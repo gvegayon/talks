@@ -8,7 +8,7 @@ host: University of California Irvine
 slides: https://github.com/gvegayon/nu2019/raw/uci2019/talk/ggvy-uci2019-talk-handout.pdf
 repo: https://github.com/gvegayon/nu2019/tree/uci2019
 video:
-announcement:
+announcement: https://maillists.uci.edu/pipermail/snrlist-announce/2019-April/000329.html
 type: invited talk
 costar: Kayla de la Haye
 ---
