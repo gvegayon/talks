@@ -73,3 +73,15 @@ work [here](https://ggvy.cl).
 | Title                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Type            |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------- |
 | <a href="https://github.com/gvegayon/talks/raw/master/20130718-parallel-stataconf/vega.pdf" target="_blank" ><strong>Just tired of endless loops\! or parallel: Stata module for parallel computing</strong></a> (July 18, 2013) <em>Stata Conference, 2013</em> <a href="https://ideas.repec.org/p/boc/norl13/4.html" target="_blank"><img width="20px" alt="Octocat icon" src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"></a> | conference talk |
+
+    ## Warning in file.rename(tmp, sprintf("presentations-%s.bib", ttype)): cannot
+    ## rename file '/tmp/RtmpVYCwpi/file131a07afe' to 'presentations-conference.bib',
+    ## reason 'Invalid cross-device link'
+
+    ## Warning in file.rename(tmp, sprintf("presentations-%s.bib", ttype)): cannot
+    ## rename file '/tmp/RtmpVYCwpi/file145feba7f' to 'presentations-invited.bib',
+    ## reason 'Invalid cross-device link'
+
+    ## Warning in file.rename(tmp, sprintf("presentations-%s.bib", ttype)): cannot
+    ## rename file '/tmp/RtmpVYCwpi/file11c1735fb' to 'presentations-other.bib', reason
+    ## 'Invalid cross-device link'
