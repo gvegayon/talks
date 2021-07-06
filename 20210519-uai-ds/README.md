@@ -8,7 +8,7 @@ location: Zoom
 type: invited talk
 slides: https://ggv.cl/slides/uai-ds 
 repo: 
-video:
+video: https://youtu.be/WrJgffkKTzQ
 ---
 
 # slides: https://ggv.cl/slides/uai-ds
