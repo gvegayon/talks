@@ -4,7 +4,7 @@ title: Reproducible Research
 date: 2016-09-19
 location: Los Angeles, CA
 host: USC
-event: HBR Students talk
+event: Health Behavior Research Students talk
 event_url:
 video:
 announcement:
