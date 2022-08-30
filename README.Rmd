@@ -128,7 +128,7 @@ costars <- sapply(details, "[[", "costar")
 costars <- sapply(costars, function(i) if (is.null(i)) NA else i)
 
 for (ttype in names(types)) {
-  tmp <- tempfile()
+  tmp <- sprintf("presentations-%s.bib", ttype)
   allnocite <- NULL
   counter <- 0L
   for (i in types[[ttype]]) {
@@ -162,7 +162,7 @@ for (ttype in names(types)) {
   cat(
     "%\\nocite{", paste0("talk", allnocite, collapse=","), "}\n", file = tmp,
     append = TRUE)
-  file.rename(tmp, sprintf("presentations-%s.bib", ttype))
+  # file.rename(tmp, )
 }
 
 # cat(readLines(tmp), sep="\n")
