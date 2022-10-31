@@ -34,7 +34,6 @@ yaml_header <- function(fn) {
 
 
 ```{r table-prep, echo=FALSE, results='hide'}
-
 # Icons
 slides_icon <- '<img width="20px" style="filter: brightness(0);" alt="Slides icon" src="https://upload.wikimedia.org/wikipedia/commons/f/f5/PowerPoint_Presentation_Flat_Icon.svg">'
 video_icon <- '<img width="20px" alt="Video camera icon" src="https://upload.wikimedia.org/wikipedia/commons/8/82/Font_Awesome_5_regular_video.svg">'
@@ -129,6 +128,7 @@ costars <- sapply(costars, function(i) if (is.null(i)) NA else i)
 
 for (ttype in names(types)) {
   tmp <- sprintf("presentations-%s.bib", ttype)
+  file.remove(tmp)
   allnocite <- NULL
   counter <- 0L
   for (i in types[[ttype]]) {
