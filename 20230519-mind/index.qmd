@@ -1,0 +1,368 @@
+---
+title: "Mechanistic Machine Learning"
+subtitle: MInD Harvard Team Visit
+bibliography: references.bib
+author: George G. Vega Yon, Ph.D.
+affiliation: Division of Epidemiology
+date: 2023-05-19
+format:
+  revealjs:
+    embed-resources: true
+    # toc: true
+    slide-number: true
+    citeproc: true
+    citations-hover: true
+    # smaller: true
+    css: styles.css
+    transition: convex
+    footer: George G. Vega Yon -- [ggv.cl/slides/mind2023](https://ggv.cl/slides/mind2023)
+---
+
+# Overview {background-color="black"}
+
+::: {style="font-size: 60%"}
+Slides can be downloaded from<br>[https://ggv.cl/slides/mind2023](https://ggv.cl/slides/mind2023){target="_blank"}
+:::
+
+## Machine Learning is Broken
+
+::: {style="font-size: 60%"}
+
+::: {.fragment}
+- After all the data pouring, attention to causal inference and mechanistic models is coming back [@bakerMechanisticModelsMachine2018; @pearlSevenToolsCausal2019]
+:::
+
+::: {.fragment}
+- The case of Google Flu Trends: Paper reported a 0.97 correlation [@ginsbergDetectingInfluenzaEpidemics2009], but predictions overshoot by 100% [@kandulaReappraisingUtilityGoogle2019; @lazerParableGoogleFlu2014].
+:::
+
+:::
+
+![](fig/google-fail-flu-trends.png){width="90%" fig-align="center"}
+
+
+## Mechanistic Machine Learning
+
+Mechanistic Machine Learning [MechML]--*a.k.a.* theory-guided data science/machine learning: A hybrid between theory and data-driven prediction.
+
+::: {.centering-block style="font-size: 90%"}
+
+::: {.column width="45%" .fragment style="padding: 20px"}
+### Mechanistic models
+
+::: {.callout}
+- Inference-driven (causality).
+- Great for small datasets.
+- Knowledge beyond the observed data.
+:::
+
+:::
+
+
+::: {.column width="45%" .fragment style="padding: 20px"}
+### Machine Learning
+
+::: {.callout}
+- Data-driven (prediction).
+- Great for big data.
+- Finds hidden knowledge in observed data.
+:::
+
+:::
+:::
+
+::: {.fragment}
+ML can help explain what theory hasn't... but we still need theory [@lazerParableGoogleFlu2014]!
+:::
+
+## MechML: State-of-the-art
+
+::: {style="font-size: 60%"}
+::: {.fragment}
+- Adjusting errors in mechanistic-based prediction models (like ABMs). [@compagniHybridNeuralNetworkSEIR2022]
+:::
+
+::: {.fragment}
+- Incorporating mechanistically inferred data as an additional -omics layer. [@zampieriMachineDeepLearning2019]
+:::
+
+::: {.fragment}
+- Using pathway networks to add "external knowledge" as features. [@altaweraqiImprovedPredictionGene2022]
+:::
+
+::: {.fragment}
+- Creating a loss function with a mechanistic penalty for modeling tumor cell density [@gawIntegrationMachineLearning2019]
+:::
+
+::: {.fragment}
+- Using simulations to inform neural networks for epidemic forecasting [@wangTDEFSITheoryguidedDeep2020].
+:::
+
+::: {.fragment}
+- and more [@jornerMachineLearningMeets2021; @willardIntegratingScientificKnowledge2022a; @jiaPhysicsGuidedMachineLearning2021; @vonruedenInformedMachineLearning2023]
+:::
+:::
+
+::: {.fragment}
+::: {.callout-warning}
+1. Mechanistic Machine Learning **is not** domain-knowledge-aided feature engineering. You need a whole other model to complement the ML algorithm.
+
+2. This isn't just an ML ensemble; you must have an ML and a Mech model.
+:::
+
+:::
+
+# How to "MechML"? {background-color="black"}
+
+## MechML: Three strategies 
+
+::: {style="font-size: 65%"}
+
+::: {.fragment}
+- **ML Correction**: Use machine learning to learn the errors of a mechanistic model.
+:::
+
+::: {.fragment}
+- **Mechanistic Feature**: Add mechanistic predictions as a feature of a machine learning model.
+:::
+
+::: {.fragment}
+- **Mechanistic Penalty**: Add constraints to the ML algorithm based on a mechanistic model.
+:::
+
+:::
+
+!["A van Gogh-style painting of an android holding a large biology book in one hand and a computer in another, examining an evolutionary tree that, instead of leaves, have genes."--DALL-E's interpretation of my description [link](https://labs.openai.com/s/s0GoDQ64OMRfMr1y6uRXtmo9).](fig/DALL%C2%B7E%202022-12-07%2021.41.30.png){width="300px" style="font-size: 80%"}
+
+
+## MechML: Work-in-progress {auto-animate="true"}
+
+::: {.centering-block}
+
+::: {.column width="25%" .rectangle}
+#### Prediction of Gene Functions<br>(R01 submitted)
+
+Combine a model of the evolution of gene function with CNNs.
+:::
+
+
+::: {.column width="25%" .rectangle}
+#### Modeling Decision-Making process<br>(R21 on the works)
+
+Use a social network diffusion model and ML to predict the prescription of ABX.
+:::
+
+
+::: {.column width="25%" .rectangle}
+#### Agent-Based Models<br>(paper)
+Use MechML for "automatic" calibration and prediction adjustment
+:::
+
+:::
+
+## Prediction of Gene Functions[^one-collab]
+
+![](fig/whole-game.png){width="90%" fig-align="center"}
+
+[^one-collab]: R01 under review; joint with Huaiyu Mi (USC), Alun Thomas, and  Karen Eilbeck (UoU).
+
+## ABM sandwich[^two-collab]
+
+![](fig/calibration-and-prediction.drawio.png){width="90%" fig-align="center"}
+
+[^two-collab]: Manuscript under development with Derek Meyer (UoU).
+
+---
+
+Some examples using a mix between ML and mechanistic models exists, e.g., @wangTDEFSITheoryguidedDeep2020
+
+![](fig/tdefsi.png){width="90%" fig-align="center"}
+
+::: {.fragment layout-align="right" width="100%"}
+Synthetic data for ML is a whole different story [@chenSyntheticDataMachine2021; @luMachineLearningSynthetic2023].
+:::
+
+## Prescription of ABX[^three-collab]
+
+![](fig/abx-us.png){width="90%" fig-align="center"}
+
+[^three-collab]: R21 under development with Karim Khader and Barbara Jones
+
+
+
+# Extended Example:<br>Predicting ABX using Soc. Networks and ML {background-color="black"}
+
+## Goal
+
+::: {.fragment .fade-up}
+- We want to build a model to predict the prescription of broadspectrum antibiotics [ABX].
+:::
+
+::: {.fragment .fade-up}
+- The goal is to understand what drives prescription.
+:::
+
+::: {.fragment .fade-up}
+- From our experience, peer influence informs the decision-making process.
+:::
+
+
+## Social Network Model of Influence
+
+![](fig/exposures.svg){width="80%" fig-align="center"}
+
+## ABM for Policy Design
+
+::: {.fragment style="position: absolute; top:50; left: 0; margin:20px;width:45%"}
+![](fig/peer-leader.png){width="100%"}
+:::
+
+::: {.fragment style="position: absolute; bottom: 0; right:0; margin:20px;width:65%"}
+![](fig/tie-formation.png){width="100%"}
+:::
+
+## ML for post-processing
+
+::: {.columns style="font-size: 70%"}
+::: {.column width="30%"}
+::: {.fragment .fade-up}
+1. Fit the Mech model. 
+:::
+
+::: {.fragment .fade-up}
+2. Generate predictions & corresponding errors. 
+:::
+
+::: {.fragment .fade-up}
+3. Have an ML model to learn the errors. 
+:::
+
+::: {.fragment .fade-up}
+4. Use the fitted ML to adjust for expected errors. 
+:::
+:::
+
+::: {.column width="70%"}
+
+![](fig/mechml-a.png){width="100%" fig-align="center"}
+
+![](fig/mechml-legend.png){width="100%" fig-align="center"}
+
+:::
+
+:::
+
+## Mechanistic prediction as a feature
+
+::: {.columns style="font-size: 70%"}
+
+::: {.column width="70%"}
+![](fig/mechml-b.png){width="100%" fig-align="center"}
+
+![](fig/mechml-legend.png){width="100%" fig-align="center"}
+:::
+
+::: {.column width="30%" }
+::: {.fragment .fade-up}
+1. Fit the Mech. model.
+:::
+
+::: {.fragment .fade-up}
+2. Generate the Mech. predictions.
+:::
+
+::: {.fragment .fade-up}
+3. Fit an ML model using the Mech. predictions as features.
+:::
+
+::: {.fragment .fade-up}
+4. Generate your MechML. predictions.
+:::
+:::
+
+:::
+
+## Mechanistic Penalty
+
+::: {.columns style="font-size: 70%"}
+::: {.column width="30%" }
+::: {.fragment .fade-up}
+1. Fit the Mech. model.
+:::
+
+::: {.fragment .fade-up}
+2. Save the parameter estimates, $\hat\theta_{\mbox{Mech}}$.
+:::
+
+::: {.fragment .fade-up}
+3. Include the fitted Mech. model into the loss:
+
+  $$
+  Loss_{\mbox{ML}}(\theta) - \lambda l(\hat{y};\hat\theta_{\mbox{Mech}})
+  $$
+:::
+
+::: {.fragment .fade-up}
+4. Minimize the loss. Bad predictions ($\hat{y}$) under the Mech. model will be penalized.
+:::
+:::
+
+::: {.column width="70%"}
+![](fig/mechml-c.png){width="100%" fig-align="center"}
+
+![](fig/mechml-legend.png){width="100%" fig-align="center"}
+:::
+
+:::
+
+
+## Discussion
+
+::: {style="font-size: 70%"}
+
+::: {.fragment .fade-up}
+- Machine learning (and big data) is excellent but has important limitations (e.g., Google Flu Trends).
+:::
+
+::: {.fragment .fade-up}
+- Mechanistic models provide a causal understanding of phenomena but are limited when predicting.
+:::
+
+::: {.fragment .fade-up}
+- We can use MechML to combine the best of both worlds (theory and data-driven prediction).
+:::
+
+::: {.fragment .fade-up}
+- MechML is not theory-aided feature engineering.
+:::
+
+::: {.fragment .fade-up}
+- At least three ways to apply it:
+
+  - ML to correct for systematic biases.
+
+  - Mech predictions as features in an ML algorithm.
+
+  - A Mech penalty embedded in the ML Loss function.
+:::
+
+:::
+
+
+## Fin {background-color="black"}
+
+::: {style="text-align: center"} 
+Thank you!
+
+<text style="font-weight: bold; font-size: 120%">"Mechanistic Machine Learning"</text>
+
+George G. Vega Yon, Ph.D.
+
+[https://ggv.cl](https://ggv.cl)
+
+george.vegayon@utah.edu
+
+:::
+
+
+## References

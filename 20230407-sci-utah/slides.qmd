@@ -1,0 +1,819 @@
+---
+title: "<p style=\"font-size: 48pt\">Network visualization (in R) with \"netplot\" and motif counting (in C++) with \"barry\"</p>"
+subtitle: SCI Seminar
+title-block-banner: true
+author: George G. Vega Yon, Ph.D.
+date: April 7, 2023
+institute:
+    - Division of Epidemiology
+    - University of Utah
+format:
+  revealjs:
+    slide-number: true
+    show-slide-number: all
+    transition: slide
+    transition-speed: fast
+    reveal_plugins: ["menu"]
+    footer: george.vegayon at utah -- https://ggvy.cl/slides/sci2023
+    embed-resources: true
+    logo: 'figures/ukfaculty.svg'
+    title-slide-attributes: 
+      data-background-image: 'figures/ukfaculty.svg'
+      data-background-opacity: 25%
+      data-background-size: 50%
+      data-background-position: top right
+---
+
+## Whoami {background-image="figures/MapChart_Map.png" background-position="center right" background-size="40%" background-opacity="50%" style="font-size:90%"}
+
+::: {.fragment}
+- Research Assistant Professor of Epidemiology.
+:::
+
+::: {.fragment}
+- Ph.D. in Biostatistics from USC and M.Sc. in Economics from Caltech.
+:::
+
+::: {.fragment}
+- Methodologist working at the intersection between Statistical Computing and Complex Systems Modeling
+  <p style="font-size:50%">(recently: social network analysis, evolution of gene functions, ABM, and mechanistic machine learning)<p>
+:::
+
+::: {.fragment}
+- About 15 years of working on networks, software dev, and data science.
+::: 
+
+::: {.fragment}
+::: {.absolute bottom=-20 right=0}
+You can download the slides from<br>[ggv.cl/slides/sci2023](https://ggv.cl/slides/sci2023)
+:::
+:::
+
+# Network visualization with netplot {background-color="black" style="font-color: white"}
+
+::: {style="text-align:right"}
+![](https://github.com/USCCANA/netplot/raw/46452f8a7adcf0c6ece73d08748d9dbffb43c079/man/figures/README-us-airports-1.png){width="60%"}
+:::
+
+## **netplot** In a nutshell
+
+- **What**: An R package for network visualization inspired by [Gephi](https://gephi.org){target="_blank"}.
+
+- **Why**: Opinionated way to visualize graphs.[^why]
+
+[^why]: And also,... because.
+
+- **Where**: You can get the dev version on GitHub ([USCCANA/netplot](https://github.com/USCCANA/netplot){target="_blank"}) or the stable version on [CRAN](https://cran.r-project.org/package=netplot){target="_blank"}.
+
+
+## **netplot** In a nutshell (cont.) {auto-animate="true"}
+
+Current parameters in `nplot` (main function)
+
+::: {style="font-size: 80%"}
+```r
+nplot(
+  edgelist,
+  layout,
+  vertex.size             = 1,
+  vertex.nsides           = 10,
+  vertex.color            = grDevices::hcl.colors(1),
+  vertex.size.range       = c(0.01, 0.03),
+  vertex.frame.color      = ...,
+  vertex.rot              = 0,
+  vertex.frame.prop       = 0.2,
+  vertex.label            = NULL,
+  vertex.label.fontsize   = NULL,
+  vertex.label.color      = "black",
+  vertex.label.fontfamily = "HersheySans",
+  vertex.label.fontface   = "bold",
+  vertex.label.show       = 0.3,
+  vertex.label.range      = c(5, 15)
+)
+```
+:::
+
+## **netplot** In a nutshell (cont.) {auto-animate="true"}
+
+Current parameters in `nplot` (main function)
+
+::: {style="font-size: 80%"}
+```r
+nplot(
+  edgelist,
+  layout,
+  vertex.size             = 1,
+  vertex.nsides           = 10,
+  vertex.color            = grDevices::hcl.colors(1),
+  vertex.size.range       = c(0.01, 0.03),
+  vertex.frame.color      = ...,
+  vertex.rot              = 0,
+  vertex.frame.prop       = 0.2,
+  vertex.label            = NULL,
+  vertex.label.fontsize   = NULL,
+  vertex.label.color      = "black",
+  vertex.label.fontfamily = "HersheySans",
+  vertex.label.fontface   = "bold",
+  vertex.label.show       = 0.3,
+  vertex.label.range      = c(5, 15),
+  edge.width              = 1,
+  edge.width.range        = c(1, 2),
+  edge.arrow.size         = NULL,
+  edge.color              = ~ego(alpha = 0.25, col = "gray") + alter,
+  edge.curvature          = pi/3,
+  edge.line.lty           = "solid",
+  edge.line.breaks        = 5,
+  sample.edges            = 1
+)
+```
+:::
+
+## **netplot** In a nutshell (cont.) {auto-animate="true"}
+
+Current parameters in `nplot` (main function)
+
+::: {style="font-size: 80%"}
+```r
+nplot(
+  edgelist,
+  layout,
+  vertex.size             = 1,
+  vertex.nsides           = 10,
+  vertex.color            = grDevices::hcl.colors(1),
+  vertex.size.range       = c(0.01, 0.03),
+  vertex.frame.color      = ...,
+  vertex.rot              = 0,
+  vertex.frame.prop       = 0.2,
+  vertex.label            = NULL,
+  vertex.label.fontsize   = NULL,
+  vertex.label.color      = "black",
+  vertex.label.fontfamily = "HersheySans",
+  vertex.label.fontface   = "bold",
+  vertex.label.show       = 0.3,
+  vertex.label.range      = c(5, 15),
+  edge.width              = 1,
+  edge.width.range        = c(1, 2),
+  edge.arrow.size         = NULL,
+  edge.color              = ~ego(alpha = 0.25, col = "gray") + alter,
+  edge.curvature          = pi/3,
+  edge.line.lty           = "solid",
+  edge.line.breaks        = 5,
+  sample.edges            = 1,
+  bg.col                  = "transparent",
+  skip.vertex             = FALSE,
+  skip.edges              = FALSE,
+  skip.arrows             = skip.edges,
+  add                     = FALSE,
+  zero.margins            = TRUE,
+  ...
+)
+```
+:::
+
+## Main features 
+
+::: {style="font-size: 80%"}
+
+::: {.fragment} 
+- Visualization engine: The `grid` system[^ggplot2grid] based on "*graphical objects*" (grobs).
+:::
+
+::: {.fragment} 
+- Highly customizable and barebones: "*If it is available in `grid`, then it is in `netplot`*".
+:::
+
+::: {.fragment} 
+- Default behavior maximizes plotting area.
+:::
+
+::: {.fragment} 
+- Vertices and edges are scaled wrt to the plotting area.
+:::
+
+::: {.fragment} 
+- Edge-color mixer can improve visuals.
+:::
+
+:::
+
+[^ggplot2grid]: Same used by [`ggplot2`](https://cran.r-project.org/package=ggplot2)
+
+
+## Main features (cont.)
+
+::: {style="text-align: center"}
+![](figures/parts-netplot.svg){width=90%}
+:::
+
+## Example code+output
+
+```{r}
+#| label: figure
+#| echo: false
+#| warning: false
+#| cache: true  
+#| fig-cap: 'The personal friendship network of a faculty of a UK university, consisting of 81 vertices (individuals) and 817 directed and weighted connections. The school affiliation of each individual is stored as a vertex attribute. This dataset can serve as a testbed for community detection algorithms. (source: R package `igraphdata`)'
+#| fig-format: svg
+library(igraph)
+library(netplot)
+data("UKfaculty", package="igraphdata")
+
+# Vertex colors f(group)
+vcols <- V(UKfaculty)$Group 
+vcols <- palette.colors(
+  n = length(unique(vcols)), palette = "Alphabet"
+)[vcols]
+
+set.seed(323)
+# Netplot call
+nplot(
+  UKfaculty,
+  edge.line.breaks = 20,
+  vertex.color     = vcols
+  )
+```
+
+## How? {auto-animate="true"}
+
+We start by loading data + colors...
+
+::: {style="font-size: 90%"}
+
+```{r}
+#| label: reproduce0
+#| echo: true
+#| output-location: column
+#| eval: false
+library(netplot)
+library(igraph)
+data("UKfaculty", package="igraphdata")
+
+# Vertex colors f(group)
+vcols <- V(UKfaculty)$Group 
+vcols <- palette.colors(
+  n       = length(unique(vcols)),
+  palette = "Alphabet"
+)[vcols]
+```
+
+:::
+
+
+## How? {auto-animate="true"}
+
+We start by loading data + colors... and then plot!
+
+::: {style="font-size: 90%"}
+
+```{r}
+#| label: reproduce
+#| echo: true
+#| output-location: column
+#| code-line-numbers: 13-17
+library(netplot)
+library(igraph)
+data("UKfaculty", package="igraphdata")
+
+# Vertex colors f(group)
+vcols <- V(UKfaculty)$Group 
+vcols <- palette.colors(
+  n       = length(unique(vcols)),
+  palette = "Alphabet"
+)[vcols]
+
+# Netplot call
+set.seed(323)
+nplot(
+  UKfaculty,
+  vertex.color = vcols
+  )
+```
+
+:::
+
+
+## Not a simple drawing
+
+- Graphical objects (Grobs) are the building blocks in `grid`
+
+- Benefit: Plots are not mere figures, are modifiable objects.
+
+- `netplot` objects are a collection of `grobs`:
+
+```{r}
+#| echo: false
+np <- nplot(
+  UKfaculty,
+  edge.line.breaks = 20,
+  vertex.color     = vcols
+  )
+invisible(head(str(np, max.level = 2)))
+```
+
+## Example 2: Playing with patterns
+
+```{r}
+#| echo: false
+#| label: various-patterns
+#| cache: true
+#| fig-cap: 'netplot supports advanced patterns. The figures feature radial gradients (vertices), lineal gradients, and repeated patterns (background).'
+pattern1 <- pattern(
+  circleGrob(r=unit(1, "mm"), gp=gpar(fill="lightgray", col = "transparent")),
+  width = unit(3, "mm"), height=unit(3, "mm"),
+  extend="repeat"
+  )
+
+plotter <- function(...) {
+  set.seed(323)
+  pars <- list(
+    UKfaculty,
+    edge.line.breaks = 20,
+    vertex.color     = vcols,
+    vertex.size.range = c(.025, .075),
+    vertex.nsides     = 40
+  )
+
+  do.call(nplot, c(pars, list(...)))
+}
+
+# Netplot call
+p1 <- plotter()
+
+# Netplot call
+p2 <- plotter(bg.col = pattern1) |>
+  set_vertex_gpar(
+    element = "core",
+    fill = lapply(get_vertex_gpar(p1, "frame", "col")$col, \(i) {
+      radialGradient(c("white", i), cx1=.8, cy1=.8, r1=0)
+      }))
+
+p3 <- plotter(bg.col = linearGradient(c("blue", "white", "yellow")))
+
+gradient_rec <- rectGrob(
+  width = 0.1, 
+  height = 0.1, 
+  gp = gpar(fill = linearGradient(
+    grDevices::adjustcolor(c("firebrick", "steelblue"), alpha.f = .5)
+    )
+    )
+)
+
+pattern2 <- pattern(
+  gradient_rec, 
+  width = 0.15, 
+  height = 0.15, 
+  extend = "reflect"
+)
+
+set.seed(323)
+# Netplot call
+p4 <- plotter(bg.col = pattern2) |>
+  set_vertex_gpar(
+    element = "core",
+    fill = lapply(get_vertex_gpar(p1, "frame", "col")$col, \(i) {
+      radialGradient(c("white", i), cx1=.8, cy1=.8, r1=0)
+      }))
+
+gridExtra::grid.arrange(
+  p1, p2, p3, p4, 
+  nrow = 2, ncol = 2
+)
+```
+
+## Alternatives
+
+::: {style="text-align: center"}
+![Comparison of default `igraph`, `sna`, `ggraph`, and `netplot` default call. `nplot` fills completely the plotting area, and adjusts vertex size, edge width, and edge arrows' size accordingly to the plotting area and plotting device.](figures/vs.svg){width="80%"}
+:::
+
+## Alternatives (patterns)
+
+::: {style="font-size:65%"}
+
+In the case of `ggplot2` (and thus, `ggraph`)
+
+::: {.fragment}
+- Patterns in R's grid system are not directly available.[^ggpattern]
+
+> While ggplot2 uses grid underneath it’s grammar API, these features are generally not directly available in ggplot2.<br>--  Thomas Lin Pedersen, author of [`ggraph`](https://cran.r-project.org/package=ggraph){target="_blank"} (source: [tidyverse.org](https://www.tidyverse.org/blog/2022/02/new-graphic-features/){target="_blank"})
+:::
+
+::: {.fragment}
+- But the [`gggrid`](https://cran.r-project.org/package=gggrid){target="_blank"} package does:
+
+> The 'ggplot2' package does not yet have an interface for pattern fills, but the 'gggrid' package (Murrell, 2022) allows us to combine raw 'grid' output with the 'ggplot2' plot.<br>-- Paul Murrel, author of [`grid`](https://stat.ethz.ch/R-manual/R-devel/library/grid/html/00Index.html) (source: [Vectorised Pattern Fills in R Graphics](https://www.stat.auckland.ac.nz/~paul/Reports/GraphicsEngine/vecpat/vecpat.html){target="_blank"})
+:::
+
+:::
+
+[^ggpattern]: See also [`ggpattern`](https://cran.r-project.org/package=ggpattern){target="_blank"}
+
+
+# Counting motifs with barry {background-color="black"}
+
+::: {style="text-align:right"}
+![](https://github.com/USCbiostats/barry/raw/209575e80a6de7bba1937344f6fbf6a89e389447/design/logo.svg){width="30%"}
+:::
+
+## **barry** in a nutshell {background-image="https://github.com/USCbiostats/barry/raw/209575e80a6de7bba1937344f6fbf6a89e389447/design/logo.svg" background-position="top right" background-size="20%"}
+
+"*Your go-to motif accountant*"[^whybarry]
+
+::: {.columns}
+
+::: {.column width=80%}
+
+- **What**: A C++ header-only template library for motif counting (and more.)
+
+- **Why**: Implement Discrete Exponential Family Models [DEFMs] for phylogenetics and social networks analysis.
+
+- **Where**: You can get it on GitHub ([USCBiostats/barry](https://github.com/USCbiostats/barry))
+:::
+
+:::
+
+[^whybarry]: Checkout Seinfeld's ["*The Sniffing Accountant*"](https://en.wikipedia.org/wiki/The_Sniffing_Accountant){target="_blank"}
+
+## Main features
+
+::: {style="font-size: 80%"}
+About 11 K lines of C++ code built for statistical modeling:
+
+::: {.fragment}
+- Header-only template library (*i.e.*, single file, multiple types.)
+:::
+
+::: {.fragment}
+- Building-blocks are the arrays (dense or sparse) and change statistics.
+:::
+
+::: {.fragment}
+- Motif count using **change statistics** (we will return to that.)
+:::
+
+::: {.fragment}
+- Full and constrained enumeration of 0/1 arrays.
+:::
+
+::: {.fragment}
+- Probability function for Discrete Exponential-Family Models \[DEFMs\].
+:::
+
+::: {.fragment}
+- Memory and computationally efficient for pooled models.
+:::
+
+:::
+
+## DEFMs
+
+::: {.columns style="font-size: 80%"}
+
+::: {.column width=50%}
+::: {.fragment}
+- Basic idea: Entries in an array are not IID
+:::
+
+::: {.fragment}
+- Highly-developed through ERGMs.
+:::
+
+::: {.fragment}
+- Not about individual entries, but about patterns.
+:::
+
+::: {.fragment}
+- Help reducing computational complexity and improving interpretation  (\# of parameters)
+:::
+
+:::
+
+::: {.column width=50%}
+![](figures/adjmat-network.png)
+:::
+
+:::
+
+## DEFMs as ERGMs
+
+![](https://github.com/gvegayon/laerug-ergms-june2019/raw/74c183c91ebe9fdb3955499df99e1f6cc6c50425/fig/parts-of-ergm.svg){width="90%" style="text-align: center"}
+
+A key component for fitting these models are *change statistics*.
+
+## Features: Change statistics
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-align: center
+set.seed(1244)
+id <- sample.int(ecount(UKfaculty), 1)
+
+set.seed(323)
+rmtie <- nplot(
+  UKfaculty,
+  edge.line.breaks = 20,
+  vertex.color     = "lightblue", 
+  edge.width       = ifelse(
+    1:ecount(UKfaculty) == id,
+    50,
+    10
+    ),
+  edge.width.range = c(1, 5),
+  edge.color = ifelse(
+    1:ecount(UKfaculty) == id,
+    "tomato",
+    adjustcolor("yellow", alpha.f = .2)
+  ),
+  skip.vertex = TRUE,
+  bg.col = "black"
+  )
+
+print(rmtie)
+```
+
+Let's look into the change statistics **edgecount**, **triangles**, and **gender-homophily** when we remove tie `33-69`.
+
+## Features: Change statistics (cont.)
+
+```{r}
+#| label: again-removed-tie
+#| echo: false
+#| cache: true
+#| fig-align: center
+print(rmtie)
+```
+
+::: {style="font-size:65%"} 
+
+```{r}
+library(ergm)
+library(intergraph)
+net1 <- asNetwork(UKfaculty)
+net2 <- network::network.copy(net1)
+
+network::delete.edges(net2, id)
+
+c1 <- summary_formula(net1 ~ edges + triangles + nodematch("Group"))
+c2 <- summary_formula(net2 ~ edges + triangles + nodematch("Group"))
+
+knitr::kable(
+  data.table::data.table(
+    "s()" = c("Edgecount", "Triangles", "Group-homophily"),
+    "y-" = c2,
+    "y+" = c1,
+    "change" = c1 - c2
+  )
+)
+```
+
+:::
+
+## Features: Memory and Comp. Efficiency
+
+::: {.columns style="font-size: 24pt"}
+
+::: {.column width="40%"}
+::: {.fragment}
+- A fundamental feature of pooled models (multiple graphs/arrays).
+:::
+::: {.fragment}
+- A single model may feature thousands of networks.
+:::
+::: {.fragment}
+- But if all have the same number of nodes (and other features)... we only need to enumerate once.
+:::
+:::
+
+::: {.column width="60%"}
+<img src="https://github.com/USCbiostats/barry/raw/209575e80a6de7bba1937344f6fbf6a89e389447/design/ergm-computing.svg" width="100%">
+
+:::
+
+:::
+
+## Building DEFMs
+
+::: {style="font-size: 80%"}
+Discrete Exponential-Family Models
+
+- Step 1: add counters + constraints[^constraints]
+
+```{mermaid}
+flowchart LR
+  start[Create the<br>Model] --> count[Add<br>Counters]
+  count --> count_done{Done?}
+  count_done --> |Yes| const[Add\nconstraints]
+  count_done --> |No| count
+  const --> const_done{Done?}
+  const_done --> |Yes| init((End))
+  const_done --> |No| const
+```
+
+- Step 2: add the arrays
+
+```{mermaid}
+flowchart LR
+  start[Hash the\narray] --> exists{Present?}
+  exists --> |Yes| ptr[[Link\nPointer]]
+  exists --> |No| addarray[[Compute\nsupport]]
+  addarray --> save[[Save\nsupport]]
+  ptr --> End((End))
+  save --> End
+```
+
+:::
+
+[^constraints]: Can be static (*e.g.*, "diagonal is structural zeros") or dynamic (*e.g.*, "fix number of triangles to 300".)
+
+## Computing support
+
+::: {style="font-size:80%"}
+
+::: {.fragment}
+- Computationally intensive.
+:::
+
+::: {.fragment}
+- Biggest model calculated featured a matrix with 30 entries, *i.e.* $2^{30} = 1,073,741,824$ (just over a billion) and took about 5 minutes.
+:::
+
+::: {.fragment}
+- For a single array, this is the procedure:
+:::
+
+
+```{mermaid}
+flowchart LR
+  start[[Static<br>constraints]] --> emptymat[Initialize<br>array]
+  emptymat --> edges[Set edge<br>sequence]
+  edges --> startc((Start<br>counting))
+```
+
+```{mermaid}
+flowchart LR
+  nextes((Start)) --> anyleft{Any edge<br>left}
+  anyleft --> |Yes| adde[Add edge]
+  anyleft --> |No| ende((End))
+  adde --> change[[Run<br>counters]]
+  change --> indyn{Within dyn<br>constraint?}
+  indyn --> |Yes| save[Include] -->anyleft
+  indyn --> |No| anyleft
+```
+
+:::
+
+## Current implemented models {style="font-size:75%"}
+
+
+::: {style="text-align: center"}
+![](figures/data-examples.svg)
+:::
+
+In principle, any dataset we can represent as 0/1 arrays can be modeled with `barry`. We have applications in social networks, phylogenetics, and health outcomes.
+
+
+## Current implemented models: DEFMs {style="font-size:75%"}
+
+::: {style="text-align: center"}
+![](figures/defm-table.png){width="90%"}
+:::
+
+- **DEFMs** for multiple correlated outcomes (Markov Random Fields; on development with Drs. [MJ Pugh](https://medicine.utah.edu/internal-medicine/epidemiology/research-programs/torch) and [Tom Valente](https://keck.usc.edu/faculty-search/thomas-william-valente/).)
+
+## Current implemented models: Social networks {style="font-size:75%"}
+
+::: {style="text-align: center"}
+![](figures/imaginary-motifs-nets.png)
+:::
+
+- Motif counting applied to counting **"*imaginary motifs*"** in Cognitive Social Structures [CSS] (with [Dr. Kyosuke Tanaka](https://kyosuketanaka.com/), submitted to [Social Networks](https://www.sciencedirect.com/journal/social-networks)).
+
+
+## Current implemented models: Phylogenetics {style="font-size:75%"}
+
+::: {style="text-align: center"}
+![](figures/geese-motifs-table.png)
+:::
+
+- Modeling the **evolution of gene functions** in terms of transition between functional states (research grant submitted to National Human Genome Research Institute [NHGRI](https://genome.gov)).
+
+
+## Other projects
+
+![](https://github.com/gvegayon/gvegayon/raw/887c6a31e950733f9ba48a039b8636eb91629b63/hexlogos.png)
+
+<p align="center">
+[**`fmcmc`**](https://cran.r-project.org/package=fmcmc) |
+[**`ergmito`**](https://cran.r-project.org/package=ergmito) |
+[**`aphylo`**](https://cran.r-project.org/package=aphylo) |
+[**`netdiffuseR`**](https://cran.r-project.org/package=netdiffuseR) |
+[**`ABCoptim`**](https://cran.r-project.org/package=ABCoptim) <br>
+[**`slurmR`**](https://cran.r-project.org/package=slurmR) |
+[**`barry`**](https://github.com/USCbiostats/barry) |
+[**`rgexf`**](https://cran.r-project.org/package=rgexf) |
+[**`geese`**](https://github.com/USCbiostats/geese)
+</p>
+
+## Other projects (cont.)
+
+::: {style="font-size: 80%"}
+
+Using [`rgexf`](https://cran.r-project.org/package=rgexf) (my most popular R package w/ 600K downloads)
+
+[![](figures/rgexf-sunbelt.png){width="60%"}](https://gvegayon.github.io/gallery/20220700-sunbelt/gexfjs/){target="_blank"}
+
+**Networks co-session network at INSNA's Sunbelt 2022**: Nodes are colored according to their roles: speaker, session chair, and session organizer.--(source: [gvegayon/gallery](https://github.com/gvegayon/gallery/tree/master/20220700-sunbelt){target="_blank"})
+
+:::
+
+## Thanks! {background-color="lightgray"}
+
+::: {style="text-align:center!important;"}
+![](https://github.com/UofUEpiBio/PHS7045-advanced-programming/raw/22b0bab33ae7018cbee8d0e4797062ba644f9c8e/projects/10-walking-dead/walking-dead.gif)
+
+{{< fa brands github >}}  [gvegayon](https://github.com/gvegayon/) <br>
+{{< fa brands twitter >}}  [\@gvegayon](https://twitter.com/gvegayon) <br>
+{{< fa home >}}  [ggvy.cl](https://ggvy.cl)<br><br>
+<text style="color:gray;font-size:80%">Presentation created with [quarto::revealjs](https:cran.r-project.org/package=quarto)</text>
+:::
+
+
+## A1. Change statistics formals
+
+- The change statistic is defined as a real-valued vector where the $k$-th entry equals the observed change when the $ij$-th tie is removed from the network. Formally:
+
+    $$
+    \delta(y_{ij}: 0\to 1) = s(\mathbf{y})_{ij}^+ - s(\mathbf{y})_{ij}^-
+    $$
+
+  Where $s(\cdot)$ is a function returning graph $\mathbf{y}$'s observed statistics, and $s(\mathbf{y})_{ij}^+$ represents its value when $y_{ij} = 1$.
+
+## A1. Change statistics formals (cont.)
+
+Furthermore, conditioning on the rest of the network (or array,) a tie transition probability equates a logit:
+
+\newcommand{\sufstats}[1]{s\left(#1\right)}
+\renewcommand{\exp}[1]{\mbox{exp}\left\{#1\right\}}
+\renewcommand{\log}[1]{\mbox{log}\left\{#1\right\}}
+\newcommand{\transpose}[1]{{#1}^\mathbf{t}}
+\renewcommand{\t}[1]{\transpose{#1}}
+
+\newcommand{\s}[1]{\sufstats{#1}}
+\newcommand{\SUFF}{\mathcal{S}}
+\newcommand{\Suff}{\mathbf{S}}
+\newcommand{\suff}{\mathbf{s}}
+
+\newcommand{\isone}[1]{{\boldsymbol{1}\left( #1 \right)}}
+\renewcommand{\Pr}[1]{{\mathbb{P}\left(#1\right) }}
+\newcommand{\f}[1]{{f\left(#1\right) }}
+\newcommand{\Prcond}[2]{{\mathbb{P}\left(#1\vphantom{#2}\;\right|\left.\vphantom{#1}#2\right)}}
+\newcommand{\fcond}[2]{{f\left(#1|#2\right) }}
+\newcommand{\Expected}[1]{{\mathbb{E}\left\{#1\right\}}}
+\newcommand{\ExpectedCond}[2]{{\mathbb{E}\left\{#1\vphantom{#2}\right|\left.\vphantom{#1}#2\right\}}}
+\renewcommand{\exp}[1]{\mbox{exp}\left\{#1\right\}}
+
+\newcommand{\Likelihood}[2]{\text{L}\left(#1 \left|\vphantom{#1}#2\right.\right)}
+
+\newcommand{\loglik}[1]{l\left(#1\right)}
+\newcommand{\logit}[1]{\mbox{logit}\left(#1\right)}
+\newcommand{\chng}[1]{\delta\left(y_{#1}:0\to1\right)}
+
+\newcommand{\pgraph}{\mathbf{x}}
+\newcommand{\snamed}[2]{\s{#1}_{\mbox{#2}}}
+
+
+\begin{equation}
+	\logit{\Pr{y_{ij} = 1|y_{-ij}}} = \transpose{\theta}\Delta\chng{ij},
+\end{equation}
+
+<!-- sufficient statistics when $y_{ij}=1$ and its value when $y_{ij} = 0$. To show
+this, we write the following:
+
+\begin{align*}
+	\Pr{y_{ij} = 1|y_{-ij}} & = %
+		\frac{\Pr{y_{ij} = 1, x_{-ij}}}{%
+			\Pr{y_{ij} = 1, y_{-ij}} + \Pr{y_{ij} = 0, y_{-ij}}} \\
+		& = \frac{\exp{\transpose{\theta}\s{\mathbf{y}}^+_{ij}}}{%
+			\exp{\transpose{\theta}\s{\mathbf{y}}^+_{ij}} + \exp{\transpose{\theta}\s{\mathbf{y}}^-_{ij}}}
+\end{align*}
+
+Applying the logit function to the previous equation, we obtain:
+
+\begin{align*}
+& = \log{\frac{\exp{\transpose{\theta}\s{\mathbf{y}}^+_{ij}}}{%
+		\exp{\transpose{\theta}\s{\mathbf{y}}^+_{ij}} + %
+		\exp{\transpose{\theta}\s{\mathbf{y}}^-_{ij}}}} - %
+	\log{ %
+		\frac{\exp{\transpose{\theta}\s{\mathbf{y}}^-_{ij}}}{%
+			\exp{\transpose{\theta}\s{\mathbf{y}}^+_{ij}} + \exp{\transpose{\theta}\s{\mathbf{y}}^-_{ij}}}%
+	 } \\
+ & = \log{\exp{\transpose{\theta}\s{\mathbf{y}}^+_{ij}}} - \log{\exp{\transpose{\theta}\s{\mathbf{y}}^-_{ij}}} \\
+ & = \transpose{\theta}\left(\s{\mathbf{y}}^+_{ij} - \s{\mathbf{y}}^-_{ij}\right) \\
+ & = \transpose{\theta}\Delta\chng{ij}
+\end{align*}
+\noindent Henceforth, the conditional probability of node $n$ gaining function $k$ can be written as: -->
+
+\begin{equation}
+	\Pr{y_{ij} = 1|y_{-ij}} = \frac{1}{1 + \exp{-\transpose{\theta}\Delta\chng{ij}}}
+\end{equation}
