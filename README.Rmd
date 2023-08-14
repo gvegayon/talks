@@ -137,6 +137,10 @@ for (ttype in names(types)) {
       "\n@inproceedings{talk-", (counter <- counter + 1), "-", ttype,
       ",\n\t" , sep="", file=tmp, append = TRUE
       )
+
+    # Parsing the title to be latex like
+    details[[i]]$title <- gsub("[&]", "\\\\&", details[[i]]$title)
+
     lines <- with(details[[i]], c(
       title      = title,
       author     = if (ttype == "conference") {
