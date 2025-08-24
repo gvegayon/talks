@@ -1,5 +1,5 @@
 ---
-repo: https://github.com/gvegayon/jsm-discussion
+repo: https://github.com/gvegayon/ccs2024
 title: epiworld: A fast multi-language library for epi ABMs
 date: 2024-09-03
 location: Exeter, UK
